@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/', function(req, res) {
 
 	var example_object = {username: 'FooBar', password: '123fadfkjadskl'}
 	res.render('index', example_object)
 })
-
-
 // Mysql database init
 // var connection = mysql.createConnection({
 //     host: 'localhost',
@@ -27,5 +26,25 @@ router.get('/', function(req, res) {
 //     }
 // });
 
+// TODO send data from form to database
+
+router.post('/signup', urlencodedParser, function (req, res) {
+
+	let info = req.body
+    var name = info.first,
+        email = info.username,
+        message = info.password;
+
+
+    console.log(info)
+
+    // connection.query('SELECT * FROM contact', function (error, results, fields) {
+    //     if (error)throw error;
+    //     console.log(results)
+    // });
+    // connection.end();
+
+    res.redirect('/');
+});
 
 module.exports = router;
