@@ -1,6 +1,7 @@
 body{
-  position: relative;;
-  }
+  position: relative;
+}
+
 .content {
   margin-top: 60px;
   display: grid;
@@ -9,7 +10,6 @@ body{
   padding: 5px;
   justify-content: space-between;
 }
-
 .middle-column {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -20,7 +20,30 @@ body{
 
 .left-column {
   border: red solid 2px;
-  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 7px;
+}
+
+.left-column h6{
+  color: rgb(154, 154, 154); /* "Popular" */
+  font-size: 14px;
+}
+
+.left-column button{
+  color: black;
+}
+
+.left-column button:hover{
+  background-color: rgba(213, 213, 213, 0.73);
+}
+
+.left-column hot-topic{
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.left-column img{
+  padding-right: 6px;
 }
 
 .right-column {
