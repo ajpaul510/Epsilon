@@ -1,6 +1,7 @@
 body{
-  position: relative;;
-  }
+  position: relative;
+}
+
 .content {
   margin-top: 60px;
   display: grid;
@@ -9,7 +10,6 @@ body{
   padding: 5px;
   justify-content: space-between;
 }
-
 .middle-column {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -20,7 +20,30 @@ body{
 
 .left-column {
   border: red solid 2px;
-  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 7px;
+}
+
+.left-column h6{
+  color: rgb(154, 154, 154); /* "Popular" */
+  font-size: 14px;
+}
+
+.left-column button{
+  color: black;
+}
+
+.left-column button:hover{
+  background-color: rgba(213, 213, 213, 0.73);
+}
+
+.left-column hot-topic{
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.left-column img{
+  padding-right: 6px;
 }
 
 .right-column {
@@ -29,20 +52,18 @@ body{
 }
 
 #to-top{
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
+  position: fixed;
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: red; /* Set a background color */
-  color: white; /* Text color */
+  z-index: 999;
+  background-color: black;
+  color: white;
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 20px;
+  border: dotted red 1px;
 }
 #to-top:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
+    background-color: #555;
 }
