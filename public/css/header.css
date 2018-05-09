@@ -7,7 +7,7 @@
 
 .navbar-brand{
   font-family: 'Rubik Mono One', sans-serif;
-  color: white;
+  color: rgb(130, 130, 130);
   text-transform: uppercase;
   font-size: 25px;
 }
@@ -17,15 +17,21 @@
 
 .navbar{
   font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   background-color: black;
   color: white;
+  font-weight: bold;
 }
 
 .logo {
   height: 40px;
 }
 
-.btn{
+.btn{    // login & sign on
   border-color: white;
   color: white;
+}
+
+.form-control{
+  font-size: 14px;
 }

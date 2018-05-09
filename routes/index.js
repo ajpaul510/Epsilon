@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 
-	var example_object = {username: 'FooBar', password: '123fadfkjadskl'}
+	var example_object = {username: 'FooBar2', password: '123fadfkjadskl'}
 	res.render('index', example_object)
 })
 
