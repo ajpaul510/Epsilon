@@ -15,6 +15,9 @@ var path = require('path');
 var opn = require('opn');
 var app = express();
 
+
+module.exports = app;
+
 app.engine('handlebars', exphbs({ defaultLayout: 'base' }));
 app.set('view engine', 'handlebars');
 
@@ -31,13 +34,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Error functions
 app.use(function (req, res, next) {
   res.status(404).send("Sorry can't find that!")
+  // res.render('404-error-page')
 })
 
 
 app.use(function (err, req, res, next) {
   console.error(err.stack)
   res.status(500).send('Something broke!')
+  // res.render('500-Something broke!-page')
 })
+
 
 opn('http://localhost:5000/');
 const PORT = process.env.PORT || 5000
