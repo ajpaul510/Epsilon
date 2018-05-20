@@ -26,7 +26,6 @@ router.get('/profile', function(req, res){
 });
 
 
-
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
 

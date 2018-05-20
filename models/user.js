@@ -53,7 +53,7 @@ class Database {
 		this.pwd_rpt = object.pwd_rpt;
 
 		var hashed_password = this.generateHash(this.password);
-
+		
 
 
 		// var sql = `INSERT INTO Epsilon VALUES ('${this.first_name}');`; // must use backtick ` for sting varible concat
