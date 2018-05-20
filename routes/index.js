@@ -2,6 +2,7 @@ var Database = require('./../models/user');
 var express = require('express');
 var router = express.Router();
 
+var db = new Database();
 
 // Handle landing (index) page request
 router.get('/', function(req, res) {
@@ -22,7 +23,6 @@ router.post('/signup', function (req, res) {
 
 	var user_info = req.body;
 
-	var db = new Database();
 	db.insert(user_info);
 	res.redirect('/');
 });
