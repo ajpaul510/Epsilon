@@ -17,6 +17,15 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
+router.get('/profile', function(req, res){
+	res.render('profile', {
+		signedin: true,
+		followers: 10,
+		following: 100
+	});
+});
+
+
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
@@ -26,7 +35,12 @@ router.post('/signup', function (req, res) {
 	db.insert(user_info);
 	res.redirect('/');
 });
-
+/*
+router.post('/profile', function(req, res){
+	console.log(req);
+	res.redirect('/profile');
+});
+*/
 
 // Handle login submission
 router.post('/',function(req, res){
