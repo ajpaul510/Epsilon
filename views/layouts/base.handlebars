@@ -1,84 +1,111 @@
 <!DOCTYPE html>
+
 <head>
-  <!-- //NAVBAR// -->
+  <!-- // BOOTSTRAP // -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-  <!-- //NAVBAR COLLAPSE BUTTON ON RIGHT// -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-  <!-- //NOT USED?// -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script> -->
-  <!-- BootStrap CDN -->
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-  <!-- //FOR NAV BAR SETTINGS MENU// -->
-  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+  <!-- // SOCIAL MEDIA BUTTON // -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- //CSS// -->
+  <!-- // Google Sign in API // -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+
+
+  <!-- // CSS // -->
   <link rel="stylesheet" href="css/main.css" type="text/css">
   <link rel="stylesheet" href="css/header.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
 
-  <!-- //FONTS// -->
+  <!-- // FONTS // -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Rubik|Rubik+Mono+One" rel="stylesheet">
 
   <title>Epsilon</title>
+
 </head>
 
 
 <header>
   <div class="header">
-    <!--//// NAV BRAND////-->
     <nav class="navbar navbar-expand-lg navbar-dark">
+      <!--//// NAV BRAND////-->
       <a class="navbar-brand" href="#">Epsilon</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!--////NAV BUTTONS////-->
+      <!--//// NAV BUTTONS ////-->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Settings
-        </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Store</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li> -->
         </ul>
 
-        <!--////LOGIN SECTION////-->
-        <form class="form-inline my-2 my-lg-0" action="" method="POST">
-          <input class="form-control mr-sm-2" type="text" placeholder='username' aria-label="Username" name="username" />
-          <input class="form-control mr-sm-2" type="password" placeholder='password' aria-label="Password" name="password" />
-          <button class="btn btn-sm btn-outline-secondary" type="button">login</button>
-          <button class="btn btn-sm btn-outline-secondary" type="button">sign up</button>
-        </form>
-      </div>
+        <!--////LOGIN DROPLEFT////-->
+        <div class="nav-item dropleft">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  LOGIN
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <form class="form-inline" action="" method="POST">
+              <input class="form-control" type="text" placeholder='username' aria-label="Username" name="username" />
+              <input class="form-control" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" />
+            </form>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck"> Remember me
+            </div>
+            <button class="btn btn-sm btn-dark login-item" type="submit">
+                  login
+            </button>
+            <!-- /// Google SIGN IN  API /// -->
+            <div class="g-signin2 login-item" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <script>
+              function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+              };
+            </script>
+            <!-- // END GOOGLE API -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              New? Sign up
+            </a>
+            <a class="dropdown-item" href="#">
+              Forgot password?
+            </a>
+          </div>
+        </div>
     </nav>
 
-  </div>
+    </div>
 </header>
 
 <body>
-		{{{body}}}
+  {{{body}}}
 </body>
+
 </html>
