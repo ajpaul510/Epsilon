@@ -31,6 +31,8 @@ body{
 
 .left-column button{
   color: black;
+  padding: 0;
+  margin: 2px;
 }
 
 .left-column button:hover{
@@ -50,8 +52,10 @@ body{
   border: red solid 2px;
   padding-left: 10px;
 }
-
-#to-top{
+#ad{
+  padding-top: 5px;
+}
+#top{
   position: fixed;
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
@@ -59,10 +63,14 @@ body{
   background-color: black;
   color: white;
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 10px;
-  border-radius: 5px; /* Rounded corners */
+  padding-top: -4px
+  padding-bottom: -4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 0px; /* Rounded corners */
+  border: thin;
   font-size: 20px;
-  border: dotted red 1px;
+  text-align: center;
 }
 #to-top:hover {
     background-color: #555;
