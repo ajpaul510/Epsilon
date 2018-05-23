@@ -32,22 +32,8 @@
   color: white;
 }
 
-.btn-dark{
-  background-color: black;
-  margin-top: 1px;
-}
-
 .form-control{
   font-size: 14px;
 }
-.g-signin2{
-  margin-top: 2px;
-}
-.login-item, form{
-  margin-left: 4px;
-}
 
-#navbarDropdown:hover{
-  color: white;
-  cursor:  pointer;
-}
+

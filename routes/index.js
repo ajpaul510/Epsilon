@@ -28,6 +28,12 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
+
+// going back to main page
+router.get('/index', function(req, res){
+	res.render('index')
+});
+
 router.get('/profile', function(req, res){
 	res.render('profile', {
 		signedin: true,

@@ -1,5 +1,6 @@
 body{
   position: relative;
+  padding-top: 70px;
 }
 
 .content {
@@ -10,13 +11,6 @@ body{
   padding: 5px;
   justify-content: space-between;
 }
-
-.signup{
-  margin-top: 90px;
-  text-align: center;
-  /*border: red solid 2px;*/
-}
-
 .middle-column {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -38,8 +32,6 @@ body{
 
 .left-column button{
   color: black;
-  padding: 0;
-  margin: 2px;
 }
 
 .left-column button:hover{
@@ -59,10 +51,8 @@ body{
   border: red solid 2px;
   padding-left: 10px;
 }
-#ad{
-  padding-top: 5px;
-}
-#top{
+
+#to-top{
   position: fixed;
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
@@ -70,17 +60,28 @@ body{
   background-color: black;
   color: white;
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding-top: -4px
-  padding-bottom: -4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 0px; /* Rounded corners */
-  border: thin;
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
   font-size: 20px;
-  text-align: center;
+  border: dotted red 1px;
 }
 #to-top:hover {
     background-color: #555;
 }
+input[type="file"] {
+    display: none;
+}
 
-
+.upload {
+    position: relative;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(248,0,0);
+    border-radius: 8%;
+}
+.upload:hover {
+  background-color: rgb(224,0,0) ;
+}
