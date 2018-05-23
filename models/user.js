@@ -46,7 +46,7 @@ class Database {
 		account.password = this.generateHash(account.password)
 
 		var select_sql = `SELECT user_id FROM User_Accounts WHERE username = '${account.username}';`;
-		var insert_sql = `INSERT INTO User_Accounts SET ?`account
+		// var insert_sql = `INSERT INTO User_Accounts SET ?`account
 
 
 		this.connection.query(sql, function(err, result){

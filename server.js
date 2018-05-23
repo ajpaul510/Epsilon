@@ -19,6 +19,10 @@ let path = require('path');
 let opn = require('opn');
 let app = express();
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
 
 module.exports = app;
 
@@ -64,6 +68,9 @@ app.use(session({
     resave: true
 }));
 
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Error functions
 app.use(function (req, res, next) {
