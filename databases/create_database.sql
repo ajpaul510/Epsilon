@@ -8,10 +8,9 @@ USE Epsilon;
 CREATE TABLE User_Accounts (
     user_id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(20) NOT NULL,
-    password VARCHAR(20) NOT NULL,
+    password VARCHAR(200) NOT NULL,
     primary key(user_id, username)
 )ENGINE=InnoDB;
-
 
 
 CREATE TABLE User_Info (

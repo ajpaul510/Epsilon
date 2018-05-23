@@ -14,14 +14,15 @@ const saltRounds = 10;
 class Database {
 
 	constructor() {
+
 		// init DB
 		this.connection = mysql.createConnection({
-			host: 'localhost',
-			port: 3306,
-			user: 'root',
-			password: 'Ajaypal1',
-			database: 'test'
-		});
+				host: 'localhost',
+				user: 'root',
+				password: 'Ajaypal1',
+				database: 'Epsilon',
+				insecureAuth: true
+			});
 
 		// Test connection to database
 		this.connection.connect(function(error){
@@ -39,42 +40,35 @@ class Database {
 		return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds));
 	};
 
-	insert(object){
 
-		// Store user entered information in instance variables
-		this.first_name = object.fname;
-		this.last_name = object.lname;
-		this.email = object.email;
-		this.user_name = object.usrName;
-		this.password = object.pwd;
-		this.pwd_rpt = object.pwd_rpt;
+	insert(account, info){
 
-		var hashed_password = this.generateHash(this.password);
+		account.password = this.generateHash(account.password)
+
+		var select_sql = `SELECT user_id FROM User_Accounts WHERE username = '${account.username}';`;
+		var insert_sql = `INSERT INTO User_Accounts SET ?`account
 
 
-		var insert_sql = `INSERT INTO Epsilon.User_Accounts VALUES (null,'${this.user_name}','${hashed_password}');`; // must use backtick ` for sting varible concat
-
-		// this.connection.query(insert_sql, function (err, result) {
-		// 	if (err) throw err;
-		// 	console.log("1 record inserted");
-		// });
-
-		var query_sql = `SELECT user_id FROM Epsilon.User_Accounts WHERE username = '${this.user_name}';`;
-		this.connection.query(query_sql, function (err, result) {
+		this.connection.query(sql, function(err, result){
 			if (err) throw err;
-
-			console.log(result);
+			info.user_id = result;
 		});
 
 
+		// this.connection.query(`INSERT INTO User_Accounts SET ?`, account, function(err, result){
+		// 	if (err) throw err;
+		// 	console.log(result);
+		// });
+
+		// this.connection.query(`INSERT INTO User_Info SET ?`, info, function(err, result){
+		// 	if (err) throw err;
+		// 	console.log(result);
+		// });
 	};
 
 	check_password(password){
 		return bcrypt.compareSync(password, hash);
 	};
-	// find_username(user_name){
-
-	// };
 
 };
 module.exports = Database;

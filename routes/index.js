@@ -3,19 +3,10 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'Wendtfam96',
-	database: 'Epsilon',
-	insecureAuth: true
-});
+
+var db = new Database();
 
 
-connection.connect(function(err) {
-	if(err) throw err;
-	console.log("Connected");
-});
 
 // Handle landing (index) page request
 router.get('/', function(req, res) {
@@ -50,7 +41,7 @@ router.post('/signup', function (req, res) {
 
 	var account = {
 		user_id: null,
-		username: user_info.username,
+		username: user_info.userName,
 		password: user_info.pwd
 	};
 
@@ -64,22 +55,10 @@ router.post('/signup', function (req, res) {
 	};
 
 
-	connection.query('SELECT user_id FROM User_Accounts WHERE username = ?', account.username, function(err, result){
-		if (err) throw err;
-		info.user_id = result;
-	});
+	// console.log(account, info)
 
-	connection.query('INSERT INTO User_Accounts SET ?', account, function(err, result){
-		if (err) throw err;
-		console.log(result);
-	});
+	db.insert(account, info)
 
-	connection.query('INSERT INTO User_Info SET ?', info, function(err, result){
-		if (err) throw err;
-		console.log(result);
-	});
-
-	connection.end();
 	res.redirect('/');
 });
 
@@ -87,15 +66,15 @@ router.post('/signup', function (req, res) {
 // Handle login submission
 router.post('/',function(req, res){
 	var login_info = req.body;
-	connection.query('SELECT * FROM User_Accounts WHERE username = ? AND password = ?', [login_info.username, login_info.password], function(err, result){
-		if (err) throw err;
-		if (result.length == 0){
-			res.send("Unsuccessful login");
-		}
-		else {
-			res.send("Successful login");
-		}
-	});
+	// connection.query('SELECT * FROM User_Accounts WHERE username = ? AND password = ?', [login_info.username, login_info.password], function(err, result){
+	// 	if (err) throw err;
+	// 	if (result.length == 0){
+	// 		res.send("Unsuccessful login");
+	// 	}
+	// 	else {
+	// 		res.send("Successful login");
+	// 	}
+	// });
 });
 
 module.exports = router;
