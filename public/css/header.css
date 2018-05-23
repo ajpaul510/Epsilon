@@ -36,15 +36,4 @@
   font-size: 14px;
 }
 
-input[type="file"] {
-    display: none;
-}
 
-nav-upload {
-    position: relative;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background-color: blue;
-}
