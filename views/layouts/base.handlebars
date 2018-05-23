@@ -16,6 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
   <!-- // Google Sign in API // -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-scope" content="profile email">
@@ -60,17 +61,18 @@
                   LOGIN
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <form class="form-inline" action="/" method="POST">
-              <input class="form-control" type="text" placeholder='username' aria-label="Username" name="username" required/>
-              <input class="form-control" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" required/>
-              <button class="btn btn-sm btn-dark login-item" type="submit">
-                    login
-              </button>
-              <div class="space"></div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="dropdownCheck"> Remember me
-              </div>
+
+            <form class="form-inline" action="" method="POST">
+              <input class="form-control" type="text" placeholder='username' aria-label="Username" name="username" />
+              <input class="form-control" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" />
             </form>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck"> Remember me
+            </div>
+            <button class="btn btn-sm btn-dark login-item" type="submit">
+                  login
+            </button>
+
             <!-- /// Google SIGN IN  API /// -->
             <div class="g-signin2 login-item" data-onsuccess="onSignIn" data-theme="dark"></div>
             <script>

@@ -25,9 +25,19 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
+router.get('/profile', function(req, res){
+	res.render('profile', {
+		signedin: true,
+		followers: 10,
+		following: 100
+	});
+});
+
+
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
+
 	var user_info = req.body;
 	var account = {
 		user_id: null,
@@ -43,6 +53,7 @@ router.post('/signup', function (req, res) {
 		phone: user_info.phone,
 		image_path: null
 	};
+
 
 	connection.query('SELECT user_id FROM User_Accounts WHERE username = ?', account.username, function(err, result){
 		if (err) throw err;
