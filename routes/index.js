@@ -15,6 +15,10 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
+// going back to main page
+router.get('/index', function(req, res){
+	res.render('index')
+});
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {

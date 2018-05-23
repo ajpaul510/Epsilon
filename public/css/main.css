@@ -1,5 +1,6 @@
 body{
   position: relative;
+  padding-top: 70px;
 }
 
 .content {
@@ -66,4 +67,21 @@ body{
 }
 #to-top:hover {
     background-color: #555;
+}
+input[type="file"] {
+    display: none;
+}
+
+.upload {
+    position: relative;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(248,0,0);
+    border-radius: 8%;
+}
+.upload:hover {
+  background-color: rgb(224,0,0) ;
 }
