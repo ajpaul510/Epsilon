@@ -72,6 +72,12 @@ input[type="file"] {
     display: none;
 }
 
+.card{
+  float: none;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
 .upload {
     position: relative;
     font-weight: bold;
