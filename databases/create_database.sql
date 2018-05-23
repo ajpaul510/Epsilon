@@ -26,7 +26,7 @@ CREATE TABLE User_Info (
 )ENGINE=InnoDB;
 
 CREATE TABLE User_Posts (
-    user_id INT NOT NULL,
+    user_id INT,
     post_id INT NOT NULL AUTO_INCREMENT,
     image_path VARCHAR(1024),
     likes INT DEFAULT 0,
@@ -37,10 +37,10 @@ CREATE TABLE User_Posts (
 )ENGINE=InnoDB;
 
 CREATE TABLE User_Comments (
-    user_id INT NOT NULL,
-    post_id INT NOT NULL,
+    user_id INT,
+    post_id INT,
     com_id INT NOT NULL AUTO_INCREMENT,
-    comment char(255) NOT NULL,
+    comment varchar(300) NOT NULL,
     reply_to_com INT,
     likes INT DEFAULT 0,
     dislikes INT DEFAULT 0,
@@ -51,8 +51,8 @@ CREATE TABLE User_Comments (
 )ENGINE=InnoDB;
 
 CREATE TABLE User_Following (
-    user_id INT NOT NULL,
-    following_id INT NOT NULL,
+    user_id INT,
+    following_id INT,
     FOREIGN KEY(user_id) REFERENCES User_Info(user_id) ON DELETE CASCADE,
     FOREIGN KEY(following_id) REFERENCES User_Info(user_id) ON DELETE CASCADE
 )ENGINE=InnoDB;
