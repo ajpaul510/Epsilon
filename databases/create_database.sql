@@ -1,11 +1,3 @@
---
---  TODO:
---
---      2.If we have time, what about WAL (write ahead logging)? Can we setup the path to log files
---        in our current directory?
---
---          "SHOW varibles" this SQL command will show all global varibles, including path to log files.
---              change those file paths to current directory.
 
 DROP DATABASE if exists Epsilon;
 
@@ -20,8 +12,10 @@ CREATE TABLE User_Accounts (
     primary key(user_id, username)
 )ENGINE=InnoDB;
 
+
+
 CREATE TABLE User_Info (
-    user_id INT NOT NULL auto_increment,
+    user_id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     email VARCHAR(40) NOT NULL,

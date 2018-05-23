@@ -2,9 +2,6 @@
 
 	All database stuff goes here
 
-
-	** Sample connector function below **
-
 */
 
 var bcrypt = require('bcrypt');
@@ -53,16 +50,31 @@ class Database {
 		this.pwd_rpt = object.pwd_rpt;
 
 		var hashed_password = this.generateHash(this.password);
-		
 
 
-		// var sql = `INSERT INTO Epsilon VALUES ('${this.first_name}');`; // must use backtick ` for sting varible concat
+		var insert_sql = `INSERT INTO Epsilon.User_Accounts VALUES (null,'${this.user_name}','${hashed_password}');`; // must use backtick ` for sting varible concat
 
-		// this.connection.query(sql, function (err, result) {
+		// this.connection.query(insert_sql, function (err, result) {
 		// 	if (err) throw err;
 		// 	console.log("1 record inserted");
 		// });
 
+		var query_sql = `SELECT user_id FROM Epsilon.User_Accounts WHERE username = '${this.user_name}';`;
+		this.connection.query(query_sql, function (err, result) {
+			if (err) throw err;
+
+			console.log(result);
+		});
+
+
 	};
+
+	check_password(password){
+		return bcrypt.compareSync(password, hash);
+	};
+	// find_username(user_name){
+
+	// };
+
 };
 module.exports = Database;
