@@ -41,6 +41,7 @@ router.get('/profile', function(req, res){
 router.post('/signup', function (req, res) {
 
 	var user_info = req.body;
+
 	var account = {
 		user_id: null,
 		username: user_info.username,
