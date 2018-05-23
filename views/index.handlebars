@@ -51,12 +51,31 @@
 
     </div>
 
+  <!-- /// MIDDLE /// -->
     <div class="middle-column">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="img/derp.jpg" alt="Card image cap">
+        <div class="card-body">
+          <link class="card-subtitle mb-2 text-muted" href="user-profile">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <!-- UPVOTE DOWNVOTE -->
+          <div id="topic" class="upvote">
+            <a class="upvote"></a>
+            <span class="count">0</span>
+            <a class="downvote"></a>
+            <a class="star"></a>
+          </div>
+          <!-- Share on Twitter -->
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <!-- Share on Gmail -->
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <g:plus action="share"></g:plus>
+        </div>
+      </div>
 
+<!-- /// END MIDDLE /// -->
 
-    </div>
-
-    <!-- /// RIGHT COLUMN ADS /// -->
+<!-- /// RIGHT COLUMN ADS /// -->
 
     <div class="right-column">
 
@@ -65,9 +84,9 @@
       <a href="https://www.starbucks.com/" target="_blank"><img src="img/right-sidebar/ads3.png"  alt="starbucks ad" id="ad"> </a>
 
     </div>
+<!-- /// END RIGHT COLUMN ADS /// -->
 
-    <!-- //// Back to the top button //// -->
-
+<!-- //// Back to the top button //// -->
     <button onclick="topFunction()" id="top" title="Go to top">top</button>
 
 
@@ -84,13 +103,9 @@
       function scrollFunction() {
 
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-
-          document.getElementById("to-top").style.display = "block";
-
+          document.getElementById("top").style.display = "block";
         } else {
-
-          document.getElementById("to-top").style.display = "none";
-
+          document.getElementById("top").style.display = "none";
         }
 
       }
