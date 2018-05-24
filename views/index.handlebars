@@ -7,11 +7,11 @@
 
       <h6>Popular</h6>
 
-      <button type="button" class="btn btn-sm"><img src="img/sidebar/flame.png" alt="flame icon hot topic" id="hot-topic"><strong>Hot</strong></button><br>
+      <button type="button" class="btn btn-sm" onclick="this.blur();"><img src="img/sidebar/flame.png" alt="flame icon hot topic" id="hot-topic"><strong>Hot</strong></button><br>
 
-      <button type="button" class="btn btn-sm"><img src="img/sidebar/trending.png" alt="arrow icon trending" id="hot-topic"><strong>Trending</strong></button><br>
+      <button type="button" class="btn btn-sm"onclick="this.blur();"><img src="img/sidebar/trending.png" alt="arrow icon trending" id="hot-topic"><strong>Trending</strong></button><br>
 
-      <button type="button" class="btn btn-sm"><img src="img/sidebar/clock-icon.jpg" alt="clock icon fresh posts" id="hot-topic"><strong>Fresh</strong></button>
+      <button type="button" class="btn btn-sm"onclick="this.blur();"><img src="img/sidebar/clock-icon.jpg" alt="clock icon fresh posts" id="hot-topic"><strong>Fresh</strong></button>
       <br>
       <!-- button to open the modal for UPLOADS -->
       <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">Upload</button>
@@ -56,19 +56,33 @@
       <div class="card" style="width: 30rem;">
         <img class="card-img-top" src="img/derp.jpg" alt="Card image cap">
         <div class="card-body">
-          <link class="card-subtitle mb-2 text-muted" href="user-profile">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="user-profile">
+            <link class="card-subtitle mb-2 text-muted" href="user-profile">@user</p>
+
+          <p class="card-text">card caption lorem ipsum dolor sit amet, no tollit abhorreant sea. Quo verear molestiae omittantur ei. His an ubique antiopam hendrerit. Usu te facer albucius, modus ullum in nec..</p>
 
           <!-- UPVOTE DOWNVOTE -->
-          <div id="topic" class="upvote">
-            <a class="upvote"></a>
-            <span class="count">0</span>
-            <a class="downvote"></a>
-            <a class="star"></a>
+          <div class="up-down-btn">
+            <button type="submit" class="btn up" id="upvote-btn" onclick="this.blur();">&#x2191;</button>
+            <input class="qty" name="qty" readonly="readonly" type="text" value="0" />
+            <button type="submit" class="btn down" id="downvote-btn" onclick="this.blur();">&#x2193;</button>
           </div>
 
+          <script type="text/javascript">
+            $(function(){
+              $(".up").click(function(){
+                  var input = $(this).siblings('.qty');
+                  input.val(parseFloat(input.val()) + 1);
+              });
+              $(".down").click(function(){
+                  var input = $(this).siblings('.qty');
+                  input.val(parseFloat(input.val()) - 1);
+              });
+            });
+          </script>
+
           <!-- Share on Twitter -->
-          <div class="social-media-btn">
+          <div class="bottom-right">
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 

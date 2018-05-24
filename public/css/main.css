@@ -23,6 +23,25 @@ body{
   border: red solid 2px;
   padding-left: 15px;
   padding-right: 15px;
+  position: relative;
+}
+.user-profile{
+  color: rgb(157, 154, 154);
+  font-size: 15px;
+}
+
+#upvote-btn, #downvote-btn{
+  font-size: 17px;
+  padding: 3px;
+  margin-left: 0px;
+  color: black;
+  cursor: pointer;
+}
+
+.qty {
+  border: none;
+  margin-right: -154px;
+  align-items: center;
 }
 
 .left-column {
@@ -95,7 +114,7 @@ body{
   position: relative;
 }
 
-.social-media-btn{
+.bottom-right{
    position: absolute;
      bottom: 8px;
      right: 16px;
