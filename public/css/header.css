@@ -36,4 +36,10 @@
   font-size: 14px;
 }
 
+.dropleft{
+  cursor: pointer;
+}
 
+.dropleft .item{
+  margin-left: 3px;
+}
