@@ -13,7 +13,7 @@
 
       <button type="button" class="btn btn-sm"><img src="img/sidebar/clock-icon.jpg" alt="clock icon fresh posts" id="hot-topic"><strong>Fresh</strong></button>
       <br>
-            <!-- button to open the modal for UPLOADS -->
+      <!-- button to open the modal for UPLOADS -->
       <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">Upload</button>
 
       <!--  the modal -->
@@ -36,7 +36,7 @@
                 <div class="form-group">
                   <label for="postCaption">Caption:</label>
                   <br>
-                  <textarea class="form-control" rows="5" id="caption" placeholder="Enter a caption for your post"></textarea> 
+                  <textarea class="form-control" rows="5" id="caption" placeholder="Enter a caption for your post"></textarea>
                 </div>
               </form>
             </div>
@@ -46,12 +46,12 @@
           </div>
         </div>
       </div>
-    
+
 
 
     </div>
 
-  <!-- /// MIDDLE /// -->
+    <!-- /// MIDDLE /// -->
     <div class="middle-column">
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="img/derp.jpg" alt="Card image cap">
@@ -66,66 +66,56 @@
             <a class="star"></a>
           </div>
           <!-- Share on Twitter -->
-          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           <!-- Share on Gmail -->
           <script src="https://apis.google.com/js/platform.js" async defer></script>
           <g:plus action="share"></g:plus>
         </div>
       </div>
 
-<!-- /// END MIDDLE /// -->
+      <!-- /// END MIDDLE /// -->
 
-<!-- /// RIGHT COLUMN ADS /// -->
+      <!-- /// RIGHT COLUMN ADS /// -->
 
-    <div class="right-column">
+      <div class="right-column">
 
-      <a href="https://www.adidas.com/" target="_blank"><img src="img/right-sidebar/ads2.jpg" alt="adidas ad" id="ad" ></a>
+        <a href="https://www.adidas.com/" target="_blank"><img src="img/right-sidebar/ads2.jpg" alt="adidas ad" id="ad" ></a>
 
-      <a href="https://www.starbucks.com/" target="_blank"><img src="img/right-sidebar/ads3.png"  alt="starbucks ad" id="ad"> </a>
+        <a href="https://www.starbucks.com/" target="_blank"><img src="img/right-sidebar/ads3.png"  alt="starbucks ad" id="ad"> </a>
 
-    </div>
-<!-- /// END RIGHT COLUMN ADS /// -->
+      </div>
+      <!-- /// END RIGHT COLUMN ADS /// -->
 
-<!-- //// Back to the top button //// -->
-    <button onclick="topFunction()" id="top" title="Go to top">top</button>
+      <!-- //// Back to the top button //// -->
+      <button onclick="topFunction()" id="top" title="Go to top">top</button>
 
+      <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+          scrollFunction()
+        };
 
-    <script>
-
-      // When the user scrolls down 20px from the top of the document, show the button
-
-      window.onscroll = function() {
-
-        scrollFunction()
-
-      };
-
-      function scrollFunction() {
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          document.getElementById("top").style.display = "block";
-        } else {
-          document.getElementById("top").style.display = "none";
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("top").style.display = "block";
+          } else {
+            document.getElementById("top").style.display = "none";
+          }
         }
 
-      }
-
-      // When the user clicks on the button, scroll to the top of the document
-
-      function topFunction() {
-
-        document.body.scrollTop = 0;
-
-        document.documentElement.scrollTop = 0;
-
-      }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+      </script>
 
 
-    
 
 
-    <!-- //// End Back to the top button //// -->
+      <!-- //// End Back to the top button //// -->
 
     </div>
 
-    </body>
+</body>
