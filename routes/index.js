@@ -1,17 +1,17 @@
 var Database = require('./../models/user');
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 
 var db = new Database();
 
 
-
 // Handle landing (index) page request
 router.get('/', function(req, res) {
-	res.render('index');
-})
+	res.render('index', {pagenotfound:false});
+});
 
 
 // Handle sign-up get request
@@ -39,6 +39,7 @@ router.post('/signup', function (req, res) {
 
 	var user_info = req.body;
 
+
 	var account = {
 		user_id: null,
 		username: user_info.userName,
@@ -55,13 +56,26 @@ router.post('/signup', function (req, res) {
 	};
 
 
-	// console.log(account, info)
+	// Validation
+	req.checkBody('fname', 'First name is required').notEmpty();
+	req.checkBody('lname', 'Last name is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	req.checkBody('userName', 'Username is required').notEmpty();
+	req.checkBody('pwd', 'Password is required').notEmpty();
+	req.checkBody('pwd-rpt', 'Passwords do not match').equals(user_info.pwd);
 
-	db.insert(account, info)
+	let errors = req.validationErrors();
 
-	res.redirect('/');
+    if (errors) {
+		res.render('signup', {
+			errors: errors
+		});
+	}
+	else {
+		req.flash('success_msg', 'You are registered and can now login');
+		res.redirect('/')
+	}
 });
-
 
 // Handle login submission
 router.post('/',function(req, res){
@@ -75,6 +89,13 @@ router.post('/',function(req, res){
 	// 		res.send("Successful login");
 	// 	}
 	// });
+	res.send('body')
+});
+
+router.get('*', function(req, res){
+  // res.status(404).redirect();
+  res.status(404);
+  res.render('index', {pagenotfound:true});
 });
 
 module.exports = router;
