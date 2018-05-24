@@ -13,6 +13,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
 
@@ -107,7 +108,6 @@
 
 
         <!--////LOGIN DROPLEFT////-->
-
         <div class="nav-item dropleft">
 
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -120,9 +120,9 @@
 
             <form class="form-inline" action="" method="POST">
 
-              <input class="form-control" type="text" placeholder='username' aria-label="Username" name="username" />
+              <input class="form-control item" type="text" placeholder='username' aria-label="Username" name="username" />
 
-              <input class="form-control" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" />
+              <input class="form-control item" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" />
 
             </form>
 
@@ -132,7 +132,7 @@
 
             </div>
 
-            <button class="btn btn-sm btn-dark login-item" type="submit">
+            <button class="btn btn-sm btn-dark login-item item" type="submit">
 
                   login
 
@@ -140,7 +140,7 @@
 
             <!-- /// Google SIGN IN  API /// -->
 
-            <div class="g-signin2 login-item" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <div class="g-signin2 login-item item" data-onsuccess="onSignIn" data-theme="dark" style="margin-top: 2px;"></div>
 
             <script>
 
