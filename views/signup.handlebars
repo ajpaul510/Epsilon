@@ -3,7 +3,14 @@
   <h1>Become a member of &epsilon;psilon</h1>
   <h4>Fill out this form to create an account</h4>
   <hr>
-  <form action="/" method="POST">
+
+  {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+  {{/if}}
+
+  <form method="POST">
     <div class="form-group">
       <label for="name">First Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter First Name" name="fname">
@@ -18,7 +25,7 @@
     </div>
     <div class="form-group">
       <label for="usrName">Username:</label>
-      <input type="Username" class="form-control" id="usrName" placeholder="Enter Username" name="usrName">
+      <input type="Username" class="form-control" id="usrName" placeholder="Enter Username" name="userName">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
