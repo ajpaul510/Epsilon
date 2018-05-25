@@ -76,14 +76,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.use('/', routes);
-
 
 // Set Port
 app.set('port', (process.env.PORT || 5000));
 
-opn('http://localhost:5000/');
+// opn('http://localhost:5000/');
 
 app.listen(app.get('port'), function(){
 	console.log('Server started on port '+app.get('port'));

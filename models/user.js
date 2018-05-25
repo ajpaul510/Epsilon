@@ -11,49 +11,36 @@ const saltRounds = 10;
 
 "use strict"
 
-class Database {
+// init DB
+connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: 'Ajaypal1',
+		database: 'Epsilon',
+		insecureAuth: true
+});
 
-	constructor() {
+connection.connect();
 
-		// init DB
-		this.connection = mysql.createConnection({
-				host: 'localhost',
-				user: 'root',
-				password: 'Ajaypal1',
-				database: 'Epsilon',
-				insecureAuth: true
-			});
-
-		// Test connection to database
-		this.connection.connect(function(error){
-
-			if (error) {
-				console.log('ERROR now database called website found!');
-			}else{
-				console.log('Database is running on localhost port : 3360');
-			}
-		});
-
-	}
-
-	generateHash(password){
-		return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds));
-	};
+function generateHash(password){
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds));
+};
 
 
-	insert(account, info){
+function insert(account, info){
 
-		account.password = this.generateHash(account.password)
+	account.password = generateHash(account.password)
 
-		var select_sql = `SELECT user_id FROM User_Accounts WHERE username = '${account.username}';`;
-		// var insert_sql = `INSERT INTO User_Accounts SET ?`account
+	var select_sql = `SELECT user_id FROM User_Accounts WHERE username = '${account.username}';`;
+	var insert_sql = `INSERT INTO User_Accounts SET ${account}`;
 
 
-		this.connection.query(sql, function(err, result){
-			if (err) throw err;
-			info.user_id = result;
-		});
+	connection.query(select_sql, function(err, result){
+		if (err) throw err;
+		info.user_id = result;
 
+	});
+	console.log(insert_sql)
 
 		// this.connection.query(`INSERT INTO User_Accounts SET ?`, account, function(err, result){
 		// 	if (err) throw err;
@@ -64,11 +51,35 @@ class Database {
 		// 	if (err) throw err;
 		// 	console.log(result);
 		// });
-	};
+};
 
-	check_password(password){
-		return bcrypt.compareSync(password, hash);
-	};
+function compare_passwords(password, hash){
+	return bcrypt.compareSync(password, hash);
+};
+
+// If username is inside database
+function check_user(username, callback){
+	var sql = `SELECT username FROM User_Accounts WHERE username = '${username}';`;
+
+	connection.query(sql, function (error, results, fields) {
+	if (error) throw error;
+		callback(results, false);
+	});
 
 };
-module.exports = Database;
+
+function check_password(password, callback){
+	var sql = `SELECT password FROM User_Accounts WHERE password = '${password}';`;
+
+	connection.query(sql, function (error, results, fields) {
+
+	if (error) throw error;
+		var isMatch = compare_passwords(password, results[0].password)
+		callback(isMatch, false);
+	});
+
+};
+
+module.exports.check_user = check_user;
+module.exports.check_password = check_password;
+module.exports.insert = insert;

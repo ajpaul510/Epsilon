@@ -5,7 +5,43 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 
-var db = new Database();
+
+//  Authentication init local storage
+
+passport.use(new LocalStrategy(
+	function (username, password, done) {
+		Database.check_user(username, function(results, err){
+			if(err) throw err;
+
+			if (results.length == 0){
+				return done(null, false, { message: 'Incorrect username.' });
+			}
+
+			Database.check_password(password, function(isMatch, err){
+				if(err) throw err
+
+				if (isMatch){
+					return done(null, Database);
+				}
+				else{
+					return done(null, false, { message: 'Invalid password' });
+				}
+			});
+		});
+	}));
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+
 
 
 // Handle landing (index) page request
@@ -55,7 +91,6 @@ router.post('/signup', function (req, res) {
 		image_path: null
 	};
 
-
 	// Validation
 	req.checkBody('fname', 'First name is required').notEmpty();
 	req.checkBody('lname', 'Last name is required').notEmpty();
@@ -72,25 +107,19 @@ router.post('/signup', function (req, res) {
 		});
 	}
 	else {
+
+		Database.insert(account, info);
 		req.flash('success_msg', 'You are registered and can now login');
 		res.redirect('/')
 	}
 });
 
 // Handle login submission
-router.post('/',function(req, res){
+router.post('/', function(req, res){
 	var login_info = req.body;
-	// connection.query('SELECT * FROM User_Accounts WHERE username = ? AND password = ?', [login_info.username, login_info.password], function(err, result){
-	// 	if (err) throw err;
-	// 	if (result.length == 0){
-	// 		res.send("Unsuccessful login");
-	// 	}
-	// 	else {
-	// 		res.send("Successful login");
-	// 	}
-	// });
-	res.send('body')
+	res.redirect('/');
 });
+
 
 router.get('*', function(req, res){
   // res.status(404).redirect();
