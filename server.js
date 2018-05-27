@@ -6,21 +6,34 @@
 		Write error pages (404, 500)
 
 */
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var routes = require('./routes/index');
-var opn = require('opn');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let exphbs = require('express-handlebars');
+let expressValidator = require('express-validator');
+let flash = require('connect-flash');
+let session = require('express-session');
+let passport = require('passport');
+let LocalStrategy = require('passport-local').Strategy;
+let MySQLStore = require('express-mysql-session')(session);
+let routes = require('./routes/index');
+let opn = require('opn');
 
 // Init App
-var app = express();
+let app = express();
+
+
+let options ={
+    host: 'localhost',
+    user: 'root',
+    password: 'Ajaypal1',
+    database: 'Epsilon',
+    insecureAuth: true
+};
+
+let sessionStore = new MySQLStore(options);
+
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -38,8 +51,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session
 app.use(session({
     secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized: false,
+    store: sessionStore,
+    resave: false
 }));
 
 // Passport init
@@ -84,5 +98,5 @@ app.set('port', (process.env.PORT || 5000));
 // opn('http://localhost:5000/');
 
 app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
+	console.log('Server started on port '+ app.get('port'));
 });

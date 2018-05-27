@@ -77,7 +77,6 @@
       </button>
 
 
-
       <!--//// NAV BUTTONS ////-->
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -98,7 +97,11 @@
 
         </ul>
 
+        {{#if is_logged_in}}
 
+         LOGOUT
+
+        {{else}}
 
         <!--////LOGIN DROPLEFT////-->
         <div class="nav-item dropleft">
@@ -111,20 +114,15 @@
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <form class="form-inline" method="POST">
-
-              <input class="form-control item" type="text" placeholder='username' aria-label="Username" name="username" />
-
-              <input class="form-control item" style="margin-top: 2px;" type="password" placeholder='password' aria-label="Password" name="password" />
-
-            </form>
-
-
-            <button class="btn btn-sm btn-dark login-item item" type="submit">
-
-                  login
-
-            </button>
+              <form  method=POST>
+                  Username:<br>
+                  <input type="text" name="username" >
+                  <br>
+                  Password:<br>
+                  <input type="text" name="password">
+                  <br><br>
+                  <input type="submit" value="Submit">
+              </form>
 
             <!-- /// Google SIGN IN  API /// -->
 
@@ -136,7 +134,7 @@
 
                 // Useful data for your client-side scripts:
 
-                var profile = googleUser.getBasicProfile();
+                let profile = googleUser.getBasicProfile();
 
                 console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 
@@ -154,11 +152,11 @@
 
                 // The ID token you need to pass to your backend:
 
-                var id_token = googleUser.getAuthResponse().id_token;
+                let id_token = googleUser.getAuthResponse().id_token;
 
                 console.log("ID Token: " + id_token);
 
-              };
+              }
 
             </script>
 
@@ -181,16 +179,13 @@
           </div>
 
         </div>
+        {{/if}}
 
     </nav>
-
-
 
     </div>
 
 </header>
-
-
 
 <body>
 
