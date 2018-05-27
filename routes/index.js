@@ -111,9 +111,12 @@ router.post('/', function (req, res) {
                     if (isMatch){
 
                         // username and password are a match
-                        req.login(info.user_id, function (err) {
-                            if (err) throw err;
-                            res.redirect('/');
+                        Database.get_id_by_username(user_info.username, function (err, results) {
+                            // login user
+                            req.login(results[0].user_id, function (err) {
+                                if (err) throw err;
+                                res.redirect('/');
+                            });
                         });
                     }
                     else{

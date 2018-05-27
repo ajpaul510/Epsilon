@@ -70,6 +70,15 @@ function get_last_insert(callback) {
     })
 }
 
+function get_id_by_username(username, callback){
+    let sql = `SELECT user_id FROM User_Accounts WHERE username = '${username}';`;
+
+    connection.query(sql, function (err, results) {
+        if (err) throw err;
+        callback(false, results);
+    })
+}
+
 function check_password(username, password, callback){
 
     let sql = `SELECT password FROM User_Accounts WHERE username = '${username}';`;
@@ -83,6 +92,7 @@ function check_password(username, password, callback){
 
 }
 
+module.exports.get_id_by_username = get_id_by_username;
 module.exports.get_last_inseret = get_last_insert;
 module.exports.check_user = check_user;
 module.exports.check_password = check_password;
