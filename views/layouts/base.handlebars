@@ -83,12 +83,13 @@
 
         <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item">
+        {{#if is_logged_in}}
+            <li class="nav-item">
 
             <a class="nav-link" href="/profile">Profile</a>
 
           </li>
-
+        {{/if}}
           <li class="nav-item">
 
             <a class="nav-link" href="#">Store</a>
@@ -98,9 +99,7 @@
         </ul>
 
         {{#if is_logged_in}}
-
-         LOGOUT
-
+            <a class="nav-link" href="/logout"> LOGOUT</a>
         {{else}}
 
         <!--////LOGIN DROPLEFT////-->

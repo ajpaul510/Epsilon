@@ -20,6 +20,8 @@ let MySQLStore = require('express-mysql-session')(session);
 let routes = require('./routes/index');
 let opn = require('opn');
 
+
+
 // Init App
 let app = express();
 
@@ -59,6 +61,10 @@ app.use(session({
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+
 
 // Express Validator
 app.use(expressValidator({

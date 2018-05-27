@@ -12,9 +12,9 @@
 
     <div class="middle-column">
 
-      {{#if signedin}}
+
       <button type="button" class="btn btn-primary btn-block">+ Upload</button>
-      {{/if}}
+
 
       <br>
       <br>
@@ -58,18 +58,15 @@
 
       <br>
 
-      {{#if signedin}}
+
         <button type="button" class="btn btn-dark btn-sm">Change Avatar</button>
         <br>
-      {{/if}}
+
 
       <p>About</p>
-        {{#if signedin}}
+
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">I am derp. I am soooo interesting. Look how I'm geekin' out. I'm so fitted. I'm on Gucci. I'm so pretty. I'm gon'get it. Watch me move!</textarea>
           <button type="button" class"btn btn-primary btn-sm">Save Changes</button>
-        {{else}}
-          <p>I am derp. I am soooo interesting. Look how I'm geekin' out. I'm so fitted. I'm on Gucci. I'm so pretty. I'm gon'get it. Watch me move!</p>
-        {{/if}}
       <br>
       <br>
 

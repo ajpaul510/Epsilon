@@ -5,6 +5,33 @@ let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 
 
+// Handle login user name and password validation
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+
+        Database.check_user(username, function (results, err) {
+            if (err){ done(err)}
+
+            if (results.length === 0){ // Username not found
+                return done(null, false);
+            }
+            else{
+                Database.check_password(username, password, function (isMatch, err) {
+                    if (err){done(err)}
+
+                    if (isMatch){
+                        return done(null, true); // username and password are matched correctly
+                    }
+                    else{
+                        return done(null, false); // password doesn't match
+                    }
+
+                })
+            }
+
+        });
+    }
+));
 
 
 // Handle landing (index) page request
@@ -23,7 +50,7 @@ router.get('/signup', function(req, res){
 
 router.get('/profile', function(req, res){
 	res.render('profile', {
-		signedin: true,
+        is_logged_in: req.isAuthenticated(),
 		followers: 10,
 		following: 100
 	});
@@ -84,50 +111,24 @@ router.post('/signup', function (req, res) {
 });
 
 // Handle login submission
-router.post('/', function (req, res) {
-    let user_info = req.body;
+router.post('/',
+    passport.authenticate('local', { successRedirect: '/',
+        failureRedirect: '/signup',
+        failureFlash: true })
+);
 
-    req.checkBody('username', 'Username is required').notEmpty();
-    req.checkBody('password', 'password is required').notEmpty();
+// Handle logout
+router.get('/logout', function (req, res) {
+    req.logout(); // delete cookie
+    req.session.destroy(); // remove session data
 
-    let errors = req.validationErrors();
 
-    if(errors){
-        res.render('index', {errors: errors})
-    }
+   // res.redirect('index', {
+   //     is_logged_in: req.isAuthenticated()
+   // });
 
-    else{
+  res.redirect('/')
 
-        Database.check_user(user_info.username, function (results, err) {
-            if (err) throw err;
-
-            if (results.length === 0){ // Not found empty results
-                res.send('username not found')
-            }
-            else{
-                Database.check_password(user_info.username, user_info.password, function (isMatch, err) {
-                    if (err) throw err;
-
-                    if (isMatch){
-
-                        // username and password are a match
-                        Database.get_id_by_username(user_info.username, function (err, results) {
-                            // login user
-                            req.login(results[0].user_id, function (err) {
-                                if (err) throw err;
-                                res.redirect('/');
-                            });
-                        });
-                    }
-                    else{
-                        res.send("wrong password")
-                    }
-
-                })
-            }
-
-        });
-    }
 });
 
 router.get('*', function(req, res){
