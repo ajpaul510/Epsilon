@@ -12,11 +12,11 @@ const saltRounds = 10;
 
 // init DB
 const connection = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: 'Ajaypal1',
-		database: 'Epsilon',
-		insecureAuth: true
+    host: "localhost",
+    user: "root",
+    password: "Ajaypal1",
+    database : "Epsilon",
+    insecureAuth: true
 });
 
 
@@ -62,7 +62,7 @@ function check_user(username, callback){
 
 }
 function get_last_insert(callback) {
-    let sql = `SELECT MAX(user_id) AS user_id FROM USER_ACCOUNTS;`; // get last user_id
+    let sql = `SELECT MAX(user_id) AS user_id FROM User_Accounts;`; // get last user_id
 
     connection.query(sql, function (err, results) {
         if (err) throw err;

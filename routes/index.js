@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
-
+let fs = require('fs');
 
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
@@ -33,7 +33,6 @@ passport.use(new LocalStrategy(
     }
 ));
 
-
 // Handle landing (index) page request
 router.get('/', function(req, res) {
     res.render('index', {
@@ -49,11 +48,18 @@ router.get('/signup', function(req, res){
 
 
 router.get('/profile', function(req, res){
-	res.render('profile', {
-        is_logged_in: req.isAuthenticated(),
-		followers: 10,
-		following: 100
-	});
+
+    if (req.isAuthenticated()){
+        res.render('profile',
+            { is_logged_in : true,
+              followers : 10,
+              following : 100});
+    }
+    else{
+        req.flash('info', 'Flash is back!');
+        res.redirect('/');
+
+    }
 });
 
 // Handle sign-up submission
@@ -104,14 +110,12 @@ router.post('/signup', function (req, res) {
                 if (err) throw err;
                 res.redirect('/');
             });
-
         });
-
     }
 });
 
 // Handle login submission
-router.post('/',
+router.post(':/',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/signup',
         failureFlash: true })
@@ -119,17 +123,11 @@ router.post('/',
 
 // Handle logout
 router.get('/logout', function (req, res) {
-    req.logout(); // delete cookie
     req.session.destroy(); // remove session data
-
-
-   // res.redirect('index', {
-   //     is_logged_in: req.isAuthenticated()
-   // });
-
-  res.redirect('/')
-
+    req.logout(); // delete cookie
+    res.redirect('/')
 });
+
 
 router.get('*', function(req, res){
   // res.status(404).redirect();

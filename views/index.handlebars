@@ -14,39 +14,8 @@
       <button type="button" class="btn btn-sm"onclick="this.blur();"><img src="img/sidebar/clock-icon.jpg" alt="clock icon fresh posts" id="hot-topic"><strong>Fresh</strong></button>
       <br>
       <!-- button to open the modal for UPLOADS -->
-      <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">Upload</button>
-
-      <!--  the modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2>Post something new!</h2>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p>Choose a file to upload</p>
-              <label class="upload"><input type="file"/>Browse...</label>
-              <button type="button" class="btn btn-default">Submit</button>
-              <br><br>
-              <p>Now think of a witty caption...</p>
-              <form>
-                <div class="form-group">
-                  <label for="postCaption">Caption:</label>
-                  <br>
-                  <textarea class="form-control" rows="5" id="caption" placeholder="Enter a caption for your post"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+
 
      <!-- /// STATUS HANDLING  /// -->
     {{#if pagenotfound}}
@@ -60,7 +29,8 @@
           <p class="user-profile">
             <link class="card-subtitle mb-2 text-muted" href="user-profile">@user</p>
 
-          <p class="card-text">card caption lorem ipsum dolor sit amet, no tollit abhorreant sea. Quo verear molestiae omittantur ei. His an ubique antiopam hendrerit. Usu te facer albucius, modus ullum in nec..</p>
+          <p class="card-text">card caption lorem ipsum dolor sit amet, no tollit abhorreant sea.
+              Quo verear molestiae omittantur ei. His an ubique antiopam hendrerit. Usu te facer albucius, modus ullum in nec..</p>
 
           <!-- UPVOTE DOWNVOTE -->
           <div class="up-down-btn">
