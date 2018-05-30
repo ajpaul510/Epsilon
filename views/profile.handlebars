@@ -48,10 +48,49 @@
     </div>
 
 
-    <div class="middle-column">
+      <div class="middle-column">
+          {{# each cards}}
+              <div class="card" style="width: 30rem;">
+                  <img class="card-img-top" src={{img_path}} alt="Card image cap">
+                  <div class="card-body">
+                      <p class="user-profile">
+                          <link class="card-subtitle mb-2 text-muted" href="user-profile">{{username}}</p>
 
+                      <p class="card-text">{{caption}}</p>
 
-    </div>
+                      <!-- UPVOTE DOWNVOTE -->
+                      <div class="up-down-btn">
+                          <button type="submit" class="btn up" id="upvote-btn" onclick="this.blur();">&#x2191;</button>
+                          <input class="qty" name="qty" readonly="readonly" type="text" value="0" />
+                          <button type="submit" class="btn down" id="downvote-btn" onclick="this.blur();">&#x2193;</button>
+                      </div>
+
+                      <script type="text/javascript">
+                          $(function(){
+                              $(".up").click(function(){
+                                  var input = $(this).siblings('.qty');
+                                  input.val(parseFloat(input.val()) + 1);
+                              });
+                              $(".down").click(function(){
+                                  var input = $(this).siblings('.qty');
+                                  input.val(parseFloat(input.val()) - 1);
+                              });
+                          });
+                      </script>
+
+                      <!-- Share on Twitter -->
+                      <div class="bottom-right">
+                          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                          <!-- Share on Gmail -->
+                          <script src="https://apis.google.com/js/platform.js" async defer></script>
+                          <g:plus action="share"></g:plus>
+                      </div>
+                  </div>
+              </div>
+          {{/each}}
+      </div>
 
 
     <div class="right-column">
@@ -125,8 +164,6 @@
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
   </script>
-
-
 
 
   <!-- //// End Back to the top button //// -->

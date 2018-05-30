@@ -11,22 +11,12 @@ const saltRounds = 10;
 
 // init DB
 const connection = mysql.createConnection({
-<<<<<<< HEAD
 		host: 'localhost',
 		user: 'root',
 		password: 'Ajaypal1',
 		database: 'Epsilon',
 		insecureAuth: true,
 		multipleStatements: true
-=======
-
-    host: "localhost",
-    user: "root",
-    password: "Wendtfam96",
-    database : "Epsilon",
-    insecureAuth: true
-
->>>>>>> 8c42ac02e1f3b3231be1c786f36dd7c9761d1fda
 });
 
 
@@ -39,7 +29,6 @@ function insert(account, info){
 
     connection.query(insert_account, account, function(err, results){
             if (err) throw err;
-            console.log(results);
     });
 
     connection.query(select_userid, account.username, function(err, results){
@@ -49,7 +38,6 @@ function insert(account, info){
 
             connection.query(insert_info, info, function(err, results){
                 if (err) throw err;
-                console.log(results);
             });
             }
         });
@@ -107,6 +95,14 @@ function get_id_by_username(username, callback){
     })
 }
 
+function insert_into_user_post(user_id, image_path, callback) {
+    let sql = `INSERT into User_Posts (user_id, image_path) VALUES ('${user_id}', '${image_path}');`;
+    connection.query(sql, function (err, results) {
+        if (err) throw err;
+
+        callback(false); // insert worked
+    });
+}
 function check_password(username, password, callback){
 
     let sql = `SELECT password FROM User_Accounts WHERE username = '${username}';`;
@@ -114,13 +110,32 @@ function check_password(username, password, callback){
     connection.query(sql, function (error, results) {
         if (error) throw error;
 				let isMatch = false;
-				if (results[0].password == password){
+				if (results[0].password === password){
 					isMatch = true;
 				}
         callback(isMatch, false);
     });
 
 }
+
+/*
+    Get_user_pictures will only get the pictures uploaded by that user themselves
+
+    SQL QUERY RESULT:
+
+        [ RowDataPacket { image_path: 'user_images/screen.png' },
+          RowDataPacket { image_path: 'user_images/operator.png' } ]
+*/
+function get_user_pictures(user_id, callback){
+    let sql = `SELECT image_path FROM User_Posts WHERE user_id = ${user_id} ORDER BY time_stamp DESC;`;
+    connection.query(sql, function (err, results) {
+        if (err) throw err;
+        callback(null, results)
+    })
+}
+
+module.exports.get_user_pictures = get_user_pictures;
+module.exports.insert_into_user_post = insert_into_user_post;
 module.exports.get_password = get_password;
 module.exports.get_id_by_username = get_id_by_username;
 module.exports.get_last_insert = get_last_insert;
