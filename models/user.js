@@ -4,7 +4,6 @@
 
 */
 
-let bcrypt = require('bcrypt');
 let mysql = require('mysql');
 
 const saltRounds = 10;
@@ -14,19 +13,14 @@ const saltRounds = 10;
 const connection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'Ajaypal1',
+		password: 'Wendtfam96',
 		database: 'Epsilon',
-		insecureAuth: true
+		insecureAuth: true,
+		multipleStatements: true
 });
 
 
-function generateHash(password){
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds));
-}
-
 function insert(account, info){
-
-	account.password = generateHash(account.password);
 
     const insert_account = 'INSERT INTO User_Accounts SET ?;';
     const select_userid = 'SELECT * FROM User_Accounts WHERE username = ?;';
@@ -51,6 +45,30 @@ function insert(account, info){
         });
 }
 
+//retrieve password for user
+function get_password(username, email, callback){
+	let sql = 'SELECT user_id FROM User_Info WHERE email = ?;';
+	let sql2 = 'SELECT password FROM User_Accounts WHERE user_id = ? AND username = ?;';
+
+	connection.query(sql, email, function(err, results){
+		if (err) throw err;
+		if (results.length === 0) { //if no match
+			callback(false, null, false);
+		}
+		else{
+			connection.query(sql2, [results[0].user_id, username], function(err, results){
+				if (err) throw err;
+				if (results.length === 0) {
+					callback(false, null, false);
+				}
+				else{
+					callback(true, results[0].password, false);
+				}
+			});
+		}
+	});
+}
+
 // If username is inside database
 function check_user(username, callback){
 	let sql = `SELECT username FROM User_Accounts WHERE username = '${username}';`;
@@ -62,7 +80,7 @@ function check_user(username, callback){
 
 }
 function get_last_insert(callback) {
-    let sql = `SELECT MAX(user_id) AS user_id FROM USER_ACCOUNTS;`; // get last user_id
+    let sql = `SELECT MAX(user_id) AS user_id FROM User_Accounts;`; // get last user_id
 
     connection.query(sql, function (err, results) {
         if (err) throw err;
@@ -85,13 +103,15 @@ function check_password(username, password, callback){
 
     connection.query(sql, function (error, results) {
         if (error) throw error;
-
-        let isMatch = bcrypt.compareSync(password, results[0].password);
+				let isMatch = false;
+				if (results[0].password == password){
+					isMatch = true;
+				}
         callback(isMatch, false);
     });
 
 }
-
+module.exports.get_password = get_password;
 module.exports.get_id_by_username = get_id_by_username;
 module.exports.get_last_inseret = get_last_insert;
 module.exports.check_user = check_user;

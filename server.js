@@ -19,7 +19,7 @@ let LocalStrategy = require('passport-local').Strategy;
 let MySQLStore = require('express-mysql-session')(session);
 let routes = require('./routes/index');
 let opn = require('opn');
-
+let fileUpload = require('express-fileupload');
 
 
 // Init App
@@ -29,7 +29,7 @@ let app = express();
 let options ={
     host: 'localhost',
     user: 'root',
-    password: 'Ajaypal1',
+    password: 'Wendtfam96',
     database: 'Epsilon',
     insecureAuth: true
 };
@@ -44,7 +44,7 @@ app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Set Static Folder
@@ -63,7 +63,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+app.use(fileUpload());
 
 
 // Express Validator

@@ -17,6 +17,10 @@ body{
   /*border: red solid 2px;*/
 }
 
+.container {
+  margin-top: 90px;
+}
+
 .middle-column {
   overflow-x: hidden;
   overflow-y: scroll;
