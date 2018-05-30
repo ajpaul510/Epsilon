@@ -147,13 +147,13 @@ router.post('/', function(req, res, next){
   passport.authenticate('local', function(err, user){
     if (err) {return next(err)}
     if (!user) {
-      res.local("username", req.params('username'));
+      res.local("username", req.param('username'));
       return res.render('login', {error: true});
     }
 
     req.login(user, {}, function(err){
       if (err) {return next(err)};
-      req.session.username = req.params('username');
+      req.session.username = req.param('username');
       return res.redirect('/');
     });
   })(req, res, next);
@@ -161,9 +161,7 @@ router.post('/', function(req, res, next){
 }
 );
 
-router.post('/profile', function (req, res) {
 
-});
 // Handle logout
 router.get('/logout', function (req, res) {
     req.session.destroy(); // remove session data
@@ -192,7 +190,7 @@ router.post('/profile', function(req, res){
     if (err) throw err;
     console.log("File was saved!");
   });
-  console.log(req.session.username);
+  console.log(req.session);
   res.redirect('/');
 });
 
