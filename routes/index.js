@@ -28,10 +28,8 @@ passport.use(new LocalStrategy(
                     else{
                         return done(null, false); // password doesn't match
                     }
-
                 })
             }
-
         });
     }
 ));
@@ -39,7 +37,7 @@ passport.use(new LocalStrategy(
 // Handle landing (index) page request
 router.get('/', function(req, res) {
     res.render('index', {
-        pagenotfound:false,
+        pagenotfound: false,
         is_logged_in: req.isAuthenticated()
     });
 });
@@ -92,10 +90,7 @@ router.post('/forgotpassword', function(req, res){
         });
       }
     });
-
-
 });
-
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
@@ -114,7 +109,6 @@ router.post('/signup', function (req, res) {
         first_name: user_info.fname,
         last_name: user_info.lname,
         email: user_info.email,
-        phone: user_info.phone,
         image_path: null
     };
 
@@ -140,7 +134,6 @@ router.post('/signup', function (req, res) {
         Database.get_last_insert(function (err, user_id) {
             if (err) throw err;
             info.user_id = user_id[0].user_id;
-
             req.login(info.user_id, function (err) {
                 if (err) throw err;
                 res.redirect('/');
@@ -150,10 +143,22 @@ router.post('/signup', function (req, res) {
 });
 
 // Handle login submission
-router.post('/',
-    passport.authenticate('local', { successRedirect: '/',
-        failureRedirect: '/signup',
-        failureFlash: true })
+router.post('/', function(req, res, next){
+  passport.authenticate('local', function(err, user){
+    if (err) {return next(err)}
+    if (!user) {
+      res.local("username", req.params('username'));
+      return res.render('login', {error: true});
+    }
+
+    req.login(user, {}, function(err){
+      if (err) {return next(err)};
+      req.session.username = req.params('username');
+      return res.redirect('/');
+    });
+  })(req, res, next);
+  return;
+}
 );
 
 router.post('/profile', function (req, res) {
@@ -166,24 +171,6 @@ router.get('/logout', function (req, res) {
     res.redirect('/')
 });
 
-// save files
-// router.post('/profile', function (req, res) {
-//
-//     var files = req.files;
-//     var file_obj = files.file;
-//     var data = file_obj.data;
-//
-//     console.log(req.user);
-//
-//     // var file_name = file_obj.name;
-//     //
-//     // fs.writeFile(`./public/img/${}`, data, function (err) {
-//     //     if (err) throw  err
-//     // });
-//
-//
-//     res.redirect('/')
-// });
 
 passport.serializeUser(function(user_id, done) {
     done(null, user_id);
@@ -194,10 +181,19 @@ passport.deserializeUser(function(user_id, done) {
 
 });
 
-router.get('*', function(req, res){
-    // res.status(404).redirect();
-    res.status(404);
-    res.render('index', {pagenotfound:true});
+
+router.post('/profile', function(req, res){
+  var files = req.files;
+  var file_obj = files.file;
+  var data = file_obj.data;
+  var name = file_obj.name;
+
+  fs.writeFile(`./public/img/${name}`, data, function(err){
+    if (err) throw err;
+    console.log("File was saved!");
+  });
+  console.log(req.session.username);
+  res.redirect('/');
 });
 
 
