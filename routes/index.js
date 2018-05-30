@@ -146,13 +146,12 @@ router.post('/', function(req, res, next){
   passport.authenticate('local', function(err, user){
     if (err) {return next(err)}
     if (!user) {
-      res.local("username", req.params('username'));
-      return res.render('login', {error: true});
+      return res.redirect('/signup');
     }
 
     req.login(user, {}, function(err){
       if (err) {return next(err)};
-      req.session.username = req.params('username');
+      req.session.username = req.param('username');
       return res.redirect('/');
     });
   })(req, res, next);

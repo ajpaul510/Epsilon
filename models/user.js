@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 
     host: "localhost",
     user: "root",
-    password: "",
+    password: "Wendtfam96",
     database : "Epsilon",
     insecureAuth: true
 

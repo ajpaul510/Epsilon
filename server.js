@@ -30,7 +30,7 @@ let options ={
 
     host: "localhost",
     user: "root",
-    password: "",
+    password: "Wendtfam96",
     database : "Epsilon",
     insecureAuth: true
 };
