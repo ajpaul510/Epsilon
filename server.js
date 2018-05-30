@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 
 	Main server and router for applicaiton
@@ -21,22 +20,6 @@ let MySQLStore = require('express-mysql-session')(session);
 let routes = require('./routes/index');
 let opn = require('opn');
 let fileUpload = require('express-fileupload');
-=======
-
-let express = require("express");
-let path = require("path");
-let cookieParser = require("cookie-parser");
-let fileUpload = require('express-fileupload');
-let bodyParser = require("body-parser");
-let exphbs = require("express-handlebars");
-let expressValidator = require("express-validator");
-let flash = require("connect-flash");
-let session = require("express-session");
-let passport = require("passport");
-let MySQLStore = require("express-mysql-session")(session);
-let routes = require("./routes/index");
-let opn = require("opn");
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 
 
 // Init App
@@ -44,17 +27,10 @@ let app = express();
 
 
 let options ={
-<<<<<<< HEAD
     host: 'localhost',
     user: 'root',
     password: 'Wendtfam96',
     database: 'Epsilon',
-=======
-    host: "localhost",
-    user: "root",
-    password: "Ajaypal1",
-    database : "Epsilon",
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
     insecureAuth: true
 };
 
@@ -90,10 +66,6 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(fileUpload());
-<<<<<<< HEAD
-
-=======
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 
 // Express Validator
 app.use(expressValidator({

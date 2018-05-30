@@ -11,20 +11,12 @@ const saltRounds = 10;
 
 // init DB
 const connection = mysql.createConnection({
-<<<<<<< HEAD
 		host: 'localhost',
 		user: 'root',
 		password: 'Wendtfam96',
 		database: 'Epsilon',
 		insecureAuth: true,
 		multipleStatements: true
-=======
-    host: "localhost",
-    user: "root",
-    password: "Ajaypal1",
-    database : "Epsilon",
-    insecureAuth: true
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 });
 
 

@@ -166,15 +166,6 @@ router.get('/logout', function (req, res) {
     res.redirect('/')
 });
 
-<<<<<<< HEAD
-=======
-
-router.get('*', function(req, res){
-  // res.status(404).redirect();
-  res.status(404);
-  res.render('index', {pagenotfound:true});
-});
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 
 passport.serializeUser(function(user_id, done) {
     done(null, user_id);

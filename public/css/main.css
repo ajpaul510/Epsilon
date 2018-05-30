@@ -24,7 +24,7 @@ body{
 .middle-column {
   overflow-x: hidden;
   overflow-y: scroll;
-  border: red solid 2px;
+  /* border: red solid 2px; */
   padding-left: 15px;
   padding-right: 15px;
   position: relative;
@@ -49,7 +49,7 @@ body{
 }
 
 .left-column {
-  border: red solid 2px;
+  /* border: red solid 2px; */
   padding-left: 10px;
   padding-top: 7px;
 }
@@ -79,7 +79,7 @@ body{
 }
 
 .right-column {
-  border: red solid 2px;
+  /* border: red solid 2px; */
   padding-left: 10px;
   padding-top: 7px;
 }
