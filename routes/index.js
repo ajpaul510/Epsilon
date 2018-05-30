@@ -3,7 +3,8 @@ let express = require('express');
 let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
-let fs = require('file-system');
+
+let fs = require('fs');
 let path = require('path');
 
 // Handle login user name and password validation
@@ -48,6 +49,14 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
+<<<<<<< HEAD
+=======
+router.get('/shop', function(req, res){
+    res.render('shop')
+});
+
+
+>>>>>>> 654bec5a79cf5de43b21c6d7e009ba784fcc1e91
 router.get('/profile', function(req, res){
 
     if (req.isAuthenticated()){
@@ -200,4 +209,14 @@ router.get('*', function(req, res){
     res.render('index', {pagenotfound:true});
 });
 
+<<<<<<< HEAD
+=======
+router.get('*', function(req, res){
+  // res.status(404).redirect();
+  res.status(404);
+  res.render('index', {pagenotfound:true});
+});
+
+
+>>>>>>> 654bec5a79cf5de43b21c6d7e009ba784fcc1e91
 module.exports = router;

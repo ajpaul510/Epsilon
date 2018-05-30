@@ -31,6 +31,7 @@ let options ={
     user: 'root',
     password: 'Ajaypal1',
     database: 'Epsilon',
+
     insecureAuth: true
 };
 
