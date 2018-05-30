@@ -128,9 +128,9 @@ router.get('/logout', function (req, res) {
     res.redirect('/')
 });
 
+// save files
 router.post('/profile', function (req, res) {
     res.send(req.files.myfile)
-
 });
 
 router.get('*', function(req, res){
