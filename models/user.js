@@ -11,12 +11,13 @@ const saltRounds = 10;
 
 // init DB
 const connection = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: 'Wendtfam96',
-		database: 'Epsilon',
-		insecureAuth: true,
-		multipleStatements: true
+
+    host: "localhost",
+    user: "root",
+    password: "",
+    database : "Epsilon",
+    insecureAuth: true
+
 });
 
 
@@ -113,7 +114,7 @@ function check_password(username, password, callback){
 }
 module.exports.get_password = get_password;
 module.exports.get_id_by_username = get_id_by_username;
-module.exports.get_last_inseret = get_last_insert;
+module.exports.get_last_insert = get_last_insert;
 module.exports.check_user = check_user;
 module.exports.check_password = check_password;
 module.exports.insert = insert;
