@@ -21,7 +21,7 @@ let app = express();
 let options ={
     host: "localhost",
     user: "root",
-    password: "Ajaypal1",
+    password: "",
     database : "Epsilon",
     insecureAuth: true
 };
