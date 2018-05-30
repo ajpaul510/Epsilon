@@ -5,8 +5,7 @@ let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 let fs = require('fs');
 let path = require('path');
-var username_id = null;
-const username = require('username');
+
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -45,6 +44,10 @@ router.get('/', function(req, res) {
 // Handle sign-up get request
 router.get('/signup', function(req, res){
 	res.render('signup')
+});
+
+router.get('/shop', function(req, res){
+    res.render('shop')
 });
 
 

@@ -1,0 +1,116 @@
+<body>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>the &epsilon;psilon shop</h1>
+    <h2>You can look, but you can't buy</h2>
+  </div>
+</div>
+
+<div class="container">
+<label>Sort By:</label>
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-secondary" onclick="sortItemAll()">All</button>
+  <button type="button" class="btn btn-secondary" onclick="sortItemMens()">Mens</button>
+  <button type="button" class="btn btn-secondary" onclick="sortItemWomens()">Womens</button>
+  <button type="button" class="btn btn-secondary" onclick="sortItemAccessories()">Accessories</button>
+</div>
+
+   </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div id="starSocks" class="card bg-primary">
+        <div class="card-header">Epsilon Star Socks</div>
+        <div class="card-body"><img src="img/pics/epsilon-star-socks.jpg" class="img-responsive" style="width:100%" alt="epsilon-star-socks"></div>
+        <div class="card-footer">$9.99
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div id="starCrop" class="card bg-primary">
+        <div class="card-header">Epsilon Star Crop top</div>
+        <div class="card-body"><img src="img/pics/epsilon-star-black-crop.jpg" class="img-responsive" style="width:100%" alt="epsilon-star-black-crop"></div>
+        <div class="card-footer">$11.90
+            <a href="#"><span class="glyphicon glyphicon-shopping-cart pull-right"></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div id="starBag" class="card bg-danger">
+        <div class="card-header">(SALE) Epsilon Star Drawstring Bag</div>
+        <div class="card-body"><img src="img/pics/epsilon-star-bag.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="card-footer"><strike>$14.90</strike> $7.45 (50% OFF!)
+        </div>
+      </div>
+    </div>
+
+</div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div id="simpleBeanie" class="card bg-danger">
+        <div class="card-header">(SALE) Epsilon Simple Beanie </div>
+        <div class="card-body"><img src="img/pics/epsilon-logo-lowercase-black.jpg" class="img-responsive" style="width:100%" alt="epsilon-logo-beanie"></div>
+        <div class="card-footer"><strike>$12.99</strike> $9.99 (SAVE $3!)
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div id="textShirtWhite" class="card bg-primary">
+        <div class="card-header">Epsilon T-Shirt </div>
+        <div class="card-body"><img src="img/pics/epsilon-text-shirt-white.jpg" class="img-responsive" style="width:100%" alt="epsilon-text-shirt-white"></div>
+        <div class="card-footer">$15.00
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div id="textShirtRed" class="card bg-primary">
+        <div class="card-header">Epsilon T-Shirt Red </div>
+        <div class="card-body"><img src="img/pics/epsilon-text-shirt-red.jpg" class="img-responsive" style="width:100%" alt="epsilon-text-shirt-white"></div>
+        <div class="card-footer">$15.00
+        </div>
+      </div>
+    </div>
+</div><br><br>
+
+<footer class="container-fluid text-center">
+
+</footer>
+
+<script>
+  function sortItemMens() {
+    document.getElementById("starCrop").style.visibility = "hidden";
+    document.getElementById("starBag").style.visibility = "hidden";
+    document.getElementById("simpleBeanie").style.visibility = "hidden";
+    document.getElementById("starSocks").style.visibility = "hidden";
+    document.getElementById("textShirtWhite").style.visibility = "visible";
+    document.getElementById("textShirtRed").style.visibility = "visible";
+  }
+  function sortItemAll() {
+    document.getElementById("starCrop").style.visibility = "visible";
+    document.getElementById("starBag").style.visibility = "visible";
+    document.getElementById("simpleBeanie").style.visibility = "visible";
+    document.getElementById("starSocks").style.visibility = "visible";
+    document.getElementById("textShirtWhite").style.visibility = "visible";
+    document.getElementById("textShirtRed").style.visibility = "visible";
+  }
+  function sortItemWomens() {
+    document.getElementById("starCrop").style.visibility = "visible";
+    document.getElementById("starBag").style.visibility = "hidden";
+    document.getElementById("simpleBeanie").style.visibility = "hidden";
+    document.getElementById("starSocks").style.visibility = "hidden";
+    document.getElementById("textShirtWhite").style.visibility = "hidden";
+    document.getElementById("textShirtRed").style.visibility = "hidden";
+  }
+  function sortItemAccessories() {
+    document.getElementById("starCrop").style.visibility = "hidden";
+    document.getElementById("starBag").style.visibility = "visible";
+    document.getElementById("simpleBeanie").style.visibility = "visible";
+    document.getElementById("starSocks").style.visibility = "visible";
+    document.getElementById("textShirtWhite").style.visibility = "hidden";
+    document.getElementById("textShirtRed").style.visibility = "hidden";
+  }
+</script>
+
+</body>
