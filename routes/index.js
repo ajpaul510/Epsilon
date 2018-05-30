@@ -4,7 +4,11 @@ let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 let fs = require('fs');
+<<<<<<< HEAD
+let path = require('path');
+=======
 
+>>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -20,6 +24,7 @@ passport.use(new LocalStrategy(
                     if (err){done(err)}
 
                     if (isMatch){
+                      console.log(isMatch);
                         return done(null, true); // username and password are matched correctly
                     }
                     else{
@@ -62,6 +67,39 @@ router.get('/profile', function(req, res){
     }
 });
 
+router.get('/forgotpassword', function(req, res){
+  res.render('forgotpassword');
+});
+
+router.post('/forgotpassword', function(req, res){
+    let username = req.body.username;
+    let email = req.body.email;
+
+    Database.get_password(username, email, function(isPassword, password, err){
+      if (err) throw err;
+      if (!isPassword){
+          res.render('forgotpassword', {
+          isPassword: false,
+          password: "Couldn't find match. Try again."
+        });
+      }
+      else {
+        res.render('forgotpassword', {
+          isPassword: true,
+          password: password
+        });
+      }
+    });
+
+
+});
+
+router.get('*', function(req, res){
+  // res.status(404).redirect();
+  res.status(404);
+  res.render('index', {pagenotfound:true});
+});
+
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
 
@@ -102,7 +140,7 @@ router.post('/signup', function (req, res) {
 
         Database.insert(account, info);
 
-        Database.get_last_inseret(function (err, user_id) {
+        Database.get_last_insert(function (err, user_id) {
             if (err) throw err;
             info.user_id = user_id[0].user_id;
 
@@ -129,12 +167,6 @@ router.get('/logout', function (req, res) {
 });
 
 
-router.get('*', function(req, res){
-  // res.status(404).redirect();
-  res.status(404);
-  res.render('index', {pagenotfound:true});
-});
-
 passport.serializeUser(function(user_id, done) {
     done(null, user_id);
 });
@@ -144,4 +176,8 @@ passport.deserializeUser(function(user_id, done) {
 
 });
 
+router.post('/profile', function(req, res){
+
+  res.redirect('/');
+});
 module.exports = router;
