@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
-let fs = require('fs');
+let fs = require('file-system');
 
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
@@ -115,7 +115,7 @@ router.post('/signup', function (req, res) {
 });
 
 // Handle login submission
-router.post(':/',
+router.post('/',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/signup',
         failureFlash: true })
@@ -128,6 +128,10 @@ router.get('/logout', function (req, res) {
     res.redirect('/')
 });
 
+router.post('/profile', function (req, res) {
+    res.send(req.files.myfile)
+
+});
 
 router.get('*', function(req, res){
   // res.status(404).redirect();
