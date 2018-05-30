@@ -4,11 +4,8 @@ let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 let fs = require('fs');
-<<<<<<< HEAD
 let path = require('path');
-=======
 
->>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -49,6 +46,10 @@ router.get('/', function(req, res) {
 // Handle sign-up get request
 router.get('/signup', function(req, res){
 	res.render('signup')
+});
+
+router.get('/shop', function(req, res){
+    res.render('shop')
 });
 
 
@@ -94,11 +95,6 @@ router.post('/forgotpassword', function(req, res){
 
 });
 
-router.get('*', function(req, res){
-  // res.status(404).redirect();
-  res.status(404);
-  res.render('index', {pagenotfound:true});
-});
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
@@ -153,7 +149,7 @@ router.post('/signup', function (req, res) {
 });
 
 // Handle login submission
-router.post(':/',
+router.post('/',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/signup',
         failureFlash: true })
@@ -180,4 +176,12 @@ router.post('/profile', function(req, res){
 
   res.redirect('/');
 });
+
+router.get('*', function(req, res){
+  // res.status(404).redirect();
+  res.status(404);
+  res.render('index', {pagenotfound:true});
+});
+
+
 module.exports = router;
