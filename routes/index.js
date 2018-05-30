@@ -4,7 +4,11 @@ let router = express.Router();
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 let fs = require('fs');
+<<<<<<< HEAD
 let path = require('path');
+=======
+
+>>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 // Handle login user name and password validation
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -34,7 +38,6 @@ passport.use(new LocalStrategy(
     }
 ));
 
-
 // Handle landing (index) page request
 router.get('/', function(req, res) {
     res.render('index', {
@@ -50,11 +53,18 @@ router.get('/signup', function(req, res){
 
 
 router.get('/profile', function(req, res){
-	res.render('profile', {
-        is_logged_in: req.isAuthenticated(),
-		followers: 10,
-		following: 100
-	});
+
+    if (req.isAuthenticated()){
+        res.render('profile',
+            { is_logged_in : true,
+              followers : 10,
+              following : 100});
+    }
+    else{
+        req.flash('info', 'Flash is back!');
+        res.redirect('/');
+
+    }
 });
 
 router.get('/forgotpassword', function(req, res){
@@ -138,14 +148,12 @@ router.post('/signup', function (req, res) {
                 if (err) throw err;
                 res.redirect('/');
             });
-
         });
-
     }
 });
 
 // Handle login submission
-router.post('/',
+router.post(':/',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/signup',
         failureFlash: true })
@@ -153,18 +161,20 @@ router.post('/',
 
 // Handle logout
 router.get('/logout', function (req, res) {
-    req.logout(); // delete cookie
     req.session.destroy(); // remove session data
-
-
-   // res.redirect('index', {
-   //     is_logged_in: req.isAuthenticated()
-   // });
-
-  res.redirect('/')
-
+    req.logout(); // delete cookie
+    res.redirect('/')
 });
 
+<<<<<<< HEAD
+=======
+
+router.get('*', function(req, res){
+  // res.status(404).redirect();
+  res.status(404);
+  res.render('index', {pagenotfound:true});
+});
+>>>>>>> 9b54bfe903ee21257cd670e0f05cf7ed4e401bc3
 
 passport.serializeUser(function(user_id, done) {
     done(null, user_id);
