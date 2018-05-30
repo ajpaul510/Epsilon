@@ -1,17 +1,25 @@
+/*
 
-let express = require("express");
-let path = require("path");
-let cookieParser = require("cookie-parser");
+	Main server and router for applicaiton
+
+	TODO:
+		Write error pages (404, 500)
+
+*/
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let exphbs = require('express-handlebars');
+let expressValidator = require('express-validator');
+let flash = require('connect-flash');
+let session = require('express-session');
+let passport = require('passport');
+let LocalStrategy = require('passport-local').Strategy;
+let MySQLStore = require('express-mysql-session')(session);
+let routes = require('./routes/index');
+let opn = require('opn');
 let fileUpload = require('express-fileupload');
-let bodyParser = require("body-parser");
-let exphbs = require("express-handlebars");
-let expressValidator = require("express-validator");
-let flash = require("connect-flash");
-let session = require("express-session");
-let passport = require("passport");
-let MySQLStore = require("express-mysql-session")(session);
-let routes = require("./routes/index");
-let opn = require("opn");
 
 
 // Init App
@@ -19,10 +27,10 @@ let app = express();
 
 
 let options ={
-    host: "localhost",
-    user: "root",
-    password: "Ajaypal1",
-    database : "Epsilon",
+    host: 'localhost',
+    user: 'root',
+    password: 'Wendtfam96',
+    database: 'Epsilon',
     insecureAuth: true
 };
 
@@ -36,7 +44,7 @@ app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Set Static Folder
