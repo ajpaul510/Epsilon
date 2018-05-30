@@ -48,7 +48,6 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
-
 router.get('/profile', function(req, res){
 
     if (req.isAuthenticated()){
@@ -91,11 +90,6 @@ router.post('/forgotpassword', function(req, res){
 
 });
 
-router.get('*', function(req, res){
-  // res.status(404).redirect();
-  res.status(404);
-  res.render('index', {pagenotfound:true});
-});
 
 // Handle sign-up submission
 router.post('/signup', function (req, res) {
@@ -156,6 +150,15 @@ router.post('/',
         failureFlash: true })
 );
 
+router.post('/profile',
+    passport.authenticate('local'),function(req, res) {
+        // If this function gets called, authentication was successful.
+        // `req.user` contains the authenticated user.
+
+        console.log(req.user);
+        res.redirect('/');
+    });
+
 // Handle logout
 router.get('/logout', function (req, res) {
     req.session.destroy(); // remove session data
@@ -164,9 +167,23 @@ router.get('/logout', function (req, res) {
 });
 
 // save files
-router.post('/profile', function (req, res) {
-    res.send(req.files.myfile)
-});
+// router.post('/profile', function (req, res) {
+//
+//     var files = req.files;
+//     var file_obj = files.file;
+//     var data = file_obj.data;
+//
+//     console.log(req.user);
+//
+//     // var file_name = file_obj.name;
+//     //
+//     // fs.writeFile(`./public/img/${}`, data, function (err) {
+//     //     if (err) throw  err
+//     // });
+//
+//
+//     res.redirect('/')
+// });
 
 passport.serializeUser(function(user_id, done) {
     done(null, user_id);
@@ -177,8 +194,10 @@ passport.deserializeUser(function(user_id, done) {
 
 });
 
-router.post('/profile', function(req, res){
-
-  res.redirect('/');
+router.get('*', function(req, res){
+    // res.status(404).redirect();
+    res.status(404);
+    res.render('index', {pagenotfound:true});
 });
+
 module.exports = router;

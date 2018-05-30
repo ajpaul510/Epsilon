@@ -29,7 +29,7 @@ let app = express();
 let options ={
     host: 'localhost',
     user: 'root',
-    password: 'Wendtfam96',
+    password: 'Ajaypal1',
     database: 'Epsilon',
     insecureAuth: true
 };
@@ -43,9 +43,10 @@ app.engine('handlebars', exphbs({defaultLayout:'base'}));
 app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -86,7 +87,6 @@ app.use(expressValidator({
 }));
 
 app.use("/", routes);
-
 
 
 // Global Vars
