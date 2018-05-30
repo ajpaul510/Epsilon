@@ -43,6 +43,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'base'}));
 app.set('view engine', 'handlebars');
 
+
+
+// Express Session
+app.use(session({
+    secret: 'secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+
+
 // BodyParser Middleware
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -52,13 +63,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Express Session
-app.use(session({
-    secret: 'secret',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false
-}));
+
 
 // Passport init
 app.use(passport.initialize());

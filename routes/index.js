@@ -49,14 +49,11 @@ router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
-<<<<<<< HEAD
-=======
+
 router.get('/shop', function(req, res){
     res.render('shop')
 });
 
-
->>>>>>> 654bec5a79cf5de43b21c6d7e009ba784fcc1e91
 router.get('/profile', function(req, res){
 
     if (req.isAuthenticated()){
@@ -159,15 +156,9 @@ router.post('/',
         failureFlash: true })
 );
 
-router.post('/profile',
-    passport.authenticate('local'),function(req, res) {
-        // If this function gets called, authentication was successful.
-        // `req.user` contains the authenticated user.
+router.post('/profile', function (req, res) {
 
-        console.log(req.user);
-        res.redirect('/');
-    });
-
+});
 // Handle logout
 router.get('/logout', function (req, res) {
     req.session.destroy(); // remove session data
@@ -209,14 +200,11 @@ router.get('*', function(req, res){
     res.render('index', {pagenotfound:true});
 });
 
-<<<<<<< HEAD
-=======
+
 router.get('*', function(req, res){
   // res.status(404).redirect();
   res.status(404);
   res.render('index', {pagenotfound:true});
 });
 
-
->>>>>>> 654bec5a79cf5de43b21c6d7e009ba784fcc1e91
 module.exports = router;
