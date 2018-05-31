@@ -93,46 +93,29 @@
 
 
     <div class="right-column">
-      <p>Username</p>
-
+      <h3>{{username}}</h3>
+      <img src="{{avatarpic}}" alt="avatar" class="img-thumbnail">
       <br>
-      <img src="img/defaultpic.jpg" alt="img/derp.jpg" class="img-thumbnail">
-      <br>
-
-
+      <form method="post" action="/avatar" enctype="multipart/form-data">
       <label for="imageUpload" class="btn btn-dark btn-block btn-outlined">Change Profile Pic</label>
-      <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+      <input type="file" id="imageUpload" name="imageUpload" required style="display: none;">
       <br>
-
-
-      <p>About</p>
-
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">I am derp. I am soooo interesting. Look how I'm geekin' out. I'm so fitted. I'm on Gucci. I'm so pretty. I'm gon'get it. Watch me move!</textarea>
-      <button type="button" class ="btn btn-primary btn-sm">Save Changes</button>
+      <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
       <br>
+      </form>
       <br>
-
       <button type="button" class="btn btn-info btn-sm">Followers: {{followers}}</button>
       <button type="button" class="btn btn-info btn-sm">Following: {{following}}</button>
-
       <br>
       <br>
-
-      {{#if signedin}}
-
-
-        <button type="button" class="btn btn-warning btn-block">Change Password</button>
-
-        <button type="button" class="btn btn-danger btn-block">Delete Account</button>
-
-
+      {{#if is_logged_in}}
+        <a class="btn btn-warning btn-block" href="/changePassword" role="button">Change Password</a>
+      <form method="post" action="/deleteAccount">
+        <button type="submit" class="btn btn-danger btn-block">Delete Account</button>
+      </form>
       {{/if}}
       <br>
       <br>
-
-
-
-
     </div>
   </div>
 
