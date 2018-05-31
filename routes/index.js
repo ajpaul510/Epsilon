@@ -68,7 +68,7 @@ router.get('/signup', function(req, res){
 
 
 router.get('/shop', function(req, res){
-    res.render('shop')
+    res.render('shop', {is_logged_in:req.isAuthenticated()})
 });
 
 

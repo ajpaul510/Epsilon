@@ -12,7 +12,6 @@ CREATE TABLE User_Accounts (
     primary key(user_id)
 );
 
-
 CREATE TABLE User_Info (
     user_id INT NOT NULL,
     first_name VARCHAR(30) NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE User_Comments (
     FOREIGN KEY(user_id) REFERENCES User_Info(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE User_Following (
+CREATE TABLE User_Following(
     user_id INT,
     following_id INT,
     FOREIGN KEY(user_id) REFERENCES User_Info(user_id) ON UPDATE CASCADE ON DELETE CASCADE,

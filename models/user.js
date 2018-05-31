@@ -94,6 +94,14 @@ function get_id_by_username(username, callback){
         callback(false, results);
     })
 }
+function get_username_by_id(user_id, callback) {
+    let sql = `SELECT username FROM User_Accounts WHERE user_id = ${user_id};`;
+    connection.query(sql, function (err, results) {
+        if (err) throw err
+        callback(results)
+    })
+
+}
 
 function insert_into_user_post(user_id, image_path, callback) {
     let sql = `INSERT into User_Posts (user_id, image_path) VALUES ('${user_id}', '${image_path}');`;
@@ -134,6 +142,7 @@ function get_user_pictures(user_id, callback){
     })
 }
 
+module.exports.get_username_by_id = get_username_by_id;
 module.exports.get_user_pictures = get_user_pictures;
 module.exports.insert_into_user_post = insert_into_user_post;
 module.exports.get_password = get_password;
