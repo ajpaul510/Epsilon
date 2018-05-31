@@ -50,7 +50,7 @@ function get_password(username, email, callback){
 
 	connection.query(sql, email, function(err, results){
 		if (err) throw err;
-		if (results.length === 0) { //if no match
+		if (results.length == 0) { //if no match
 			callback(false, null, false);
 		}
 		else{
@@ -64,6 +64,15 @@ function get_password(username, email, callback){
 				}
 			});
 		}
+	});
+}
+
+function change_password(username, newPassword, callback){
+	var sql = `UPDATE User_Accounts SET password = ? WHERE username = ?;`;
+	connection.query(sql, [newPassword, username], function(err, results){
+		if (err) callback(true, null);
+		console.log(newPassword);
+		callback(false, newPassword);
 	});
 }
 
@@ -98,7 +107,6 @@ function get_username_by_id(user_id, callback) {
     let sql = `SELECT username FROM User_Accounts WHERE user_id = ${user_id};`;
     connection.query(sql, function (err, results) {
         if (err) throw err;
-
         callback(false, results)
     })
 
@@ -151,6 +159,26 @@ function get_all_images(callback){
     })
 }
 
+function upload_avatar(imgfile, user_id, callback){
+  var sql = 'UPDATE User_Info SET image_path = ? WHERE user_id = ?;';
+  connection.query(sql, [imgfile, user_id], function(err, results){
+      if (err) throw err;
+      callback(false, imgfile);
+    });
+}
+
+function deleteAccount(user_id, callback){
+	var sql = 'DELETE FROM User_Accounts WHERE user_id = ?;';
+	connection.query(sql, user_id, function(err, results){
+		if (err) throw err;
+		console.log(results);
+		callback(false, results);
+	});
+}
+
+module.exports.deleteAccount = deleteAccount;
+module.exports.change_password = change_password;
+module.exports.upload_avatar = upload_avatar;
 module.exports.get_all_images = get_all_images;
 module.exports.get_username_by_id = get_username_by_id;
 module.exports.get_user_pictures = get_user_pictures;

@@ -92,7 +92,7 @@ router.get('/', function(req, res) {
 
 // Handle sign-up get request
 router.get('/signup', function(req, res){
-	res.render('signup')
+	res.render('signup');
 });
 
 router.get('/shop', function(req, res){
@@ -122,6 +122,32 @@ router.post('/forgotpassword', function(req, res){
         });
       }
     });
+});
+
+router.get('/changepassword', function(req, res){
+  res.render('changepassword', {
+    is_logged_in: req.isAuthenticated()
+  });
+});
+
+router.post('/changepassword', function(req, res){
+  let username = req.body.username;
+  let newPassword = req.body.newPassword;
+  let oldPassword = req.body.oldPassword;
+  console.log(username + newPassword + oldPassword);
+  Database.check_password(username, oldPassword, function(isMatch, err){
+    if (isMatch) {
+      Database.change_password(username, newPassword, function(err, password){
+        if (err) throw err;
+        res.redirect('/');
+      });
+    }
+    else {
+      res.render('changepassword', {
+        is_logged_in: req.isAuthenticated()
+      });
+    }
+  });
 });
 
 // Handle sign-up submission
@@ -252,16 +278,15 @@ router.get('/profile', function(req, res){
     else {
         let user_sess_id = req.session.passport.user;
 
-        Database.get_username_by_id(user_sess_id, function (err, results) {
-            if (err) throw err;
-
-            get_card_data_profile(user_sess_id, function (data) {
-                res.render('profile', {
-                    is_logged_in :is_logged_in,  //base.handlebars needs this
-                    signedin: is_logged_in, // profile.handlebars needs this
-                    cards : data, // for dynamic card generation (Feed)
-                    username :results[0].username
-                });
+        get_card_data_profile(user_sess_id, function (data) {
+            res.render('profile', {
+                is_logged_in :is_logged_in,  //base.handlebars needs this
+                signedin: is_logged_in, // profile.handlebars needs this
+                cards : data, // for dynamic card generation (Feed)
+                avatarpic: req.session.passport.img,
+                username: req.session.passport.username,
+                following: 10,
+                followers: 100
             });
         });
 
@@ -284,8 +309,8 @@ router.post('/profile', function(req, res){
   fs.writeFile(saving_image_path, data, function(err) {
       if (err) throw err;
       console.log("File was saved!");
-
       Database.insert_into_user_post(user_sess_id, db_image_path, caption, function (err) {
+
           if (err) throw err;
 
           get_card_data_profile(user_sess_id, function (data) {
@@ -299,6 +324,39 @@ router.post('/profile', function(req, res){
       });
   });
 
+router.post('/avatar', function(req, res){
+  var files1 = req.files;
+  var avatarfile = files1.imageUpload;
+  var data_avatar = avatarfile.data;
+  var name_avatar = avatarfile.name;
+  var newfile = `./public/img/${name_avatar}`;
+  var nfile = `/img/${name_avatar}`;
+
+  fs.writeFile(newfile, data_avatar, function(err){
+    if (err) throw err;
+    console.log("File Saved");
+  });
+
+  Database.get_username_by_id(req.session.passport.user, function(err, results){
+    req.session.passport.username = results[0].username;
+  });
+
+  Database.upload_avatar(newfile, req.session.passport.user, function(err, results){
+    console.log('Success');
+    req.session.passport.img = nfile;
+    res.redirect('/profile');
+  });
+
+});
+
+router.post('/deleteAccount', function(req, res){
+  Database.deleteAccount(req.session.passport.user, function(err, results){
+    if (err) console.log(err);
+  });
+  req.session.destroy(); // remove session data
+  req.logout(); // delete cookie
+  res.redirect('/')
+});
 
 router.get('*', function(req, res){
   // res.status(404).redirect();
