@@ -34,44 +34,70 @@ passport.use(new LocalStrategy(
     }
 ));
 
-function get_card_data(user_sess_id, callback){
-    Database.get_user_pictures(user_sess_id, function (err, results) {
+function get_card_data_profile(user_sess_id, callback){
+
+    Database.get_username_by_id(user_sess_id, function (err, global_username) {
+
+        Database.get_user_pictures(user_sess_id, function (err, results) {
+            if (err) throw err;
+
+            let data = [];
+            // loop through SQL query results and append to data list
+            for (let i in results) {
+                data.push({
+                    img_path : results[i].image_path,
+                    username : global_username[0].username,
+                    caption : results[i].caption});
+            }
+            callback(data)
+        })
+
+    });
+}
+
+function get_card_data_index(callback){
+
+    Database.get_all_images(function (err, results) {
         if (err) throw err;
 
         let data = [];
-
-        // loop through SQL query results and append to data list
-        for (let i in results) {
-            data.push({img_path : results[i].image_path, username : 'sample', caption : "sample again"});
+        for (let i in results){
+            data.push({
+                    img_path : results[i].image_path,
+                    username : results[0].user_id,
+                    caption : results[i].caption});
         }
         callback(data)
-    })
-}
+    });
 
+}
 
 // Handle landing (index) page request
 router.get('/', function(req, res) {
 
-    res.render('index', {
-        is_logged_in: req.isAuthenticated(),
-        cards: [
-            {img_path : "img/derp.jpg", username: "bob", caption : "This is the comment"},
-            {img_path : "user_images/operator.png", username: "joe", caption : "this is working"},
-            {img_path : "user_images/screen.png", username: "blow", caption: "Not dynamic"}
-        ]})
-});
+    let is_logged_in = req.isAuthenticated();
+
+    get_card_data_index(function (results) {
+        let card_data = results;
+
+
+        res.render('index', {
+            is_logged_in :is_logged_in,  //base.handlebars needs this
+            signedin: is_logged_in, // profile.handlebars needs this
+            cards : card_data // for dynamic card generation (Feed)
+        });
+    });
+
+    });
 
 // Handle sign-up get request
 router.get('/signup', function(req, res){
 	res.render('signup')
 });
 
-
 router.get('/shop', function(req, res){
     res.render('shop', {is_logged_in:req.isAuthenticated()})
 });
-
-
 
 router.get('/forgotpassword', function(req, res){
   res.render('forgotpassword');
@@ -225,19 +251,22 @@ router.get('/profile', function(req, res){
     }
     else {
         let user_sess_id = req.session.passport.user;
-        get_card_data(user_sess_id, function (data) {
-            res.render('profile', {
-                is_logged_in :is_logged_in,  //base.handlebars needs this
-                signedin: is_logged_in, // profile.handlebars needs this
-                cards : data // for dynamic card generation (Feed)
+
+        Database.get_username_by_id(user_sess_id, function (err, results) {
+            if (err) throw err;
+
+            get_card_data_profile(user_sess_id, function (data) {
+                res.render('profile', {
+                    is_logged_in :is_logged_in,  //base.handlebars needs this
+                    signedin: is_logged_in, // profile.handlebars needs this
+                    cards : data, // for dynamic card generation (Feed)
+                    username :results[0].username
+                });
             });
         });
+
     }
 });
-
-
-
-
 
 
 router.post('/profile', function(req, res){
@@ -250,14 +279,16 @@ router.post('/profile', function(req, res){
   var saving_image_path = `./public/user_images/${name}`;
   var db_image_path = `user_images/${name}`;
 
+  var caption = req.body.caption;
+
   fs.writeFile(saving_image_path, data, function(err) {
       if (err) throw err;
       console.log("File was saved!");
 
-      Database.insert_into_user_post(user_sess_id, db_image_path, function (err) {
+      Database.insert_into_user_post(user_sess_id, db_image_path, caption, function (err) {
           if (err) throw err;
 
-          get_card_data(user_sess_id, function (data) {
+          get_card_data_profile(user_sess_id, function (data) {
               res.render('profile', {
                   is_logged_in :req.isAuthenticated(),  //base.handlebars needs this
                   signedin: req.isAuthenticated(), // profile.handlebars needs this
@@ -267,7 +298,6 @@ router.post('/profile', function(req, res){
       });
       });
   });
-
 
 
 router.get('*', function(req, res){

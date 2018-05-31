@@ -27,6 +27,7 @@ CREATE TABLE User_Posts (
     image_path VARCHAR(1024),
     likes INT DEFAULT 0,
     dislikes INT DEFAULT 0,
+    caption VARCHAR(100),
     time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(post_id),
     FOREIGN KEY(user_id) REFERENCES User_Info(user_id) ON UPDATE CASCADE ON DELETE CASCADE

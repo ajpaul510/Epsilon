@@ -97,15 +97,16 @@ function get_id_by_username(username, callback){
 function get_username_by_id(user_id, callback) {
     let sql = `SELECT username FROM User_Accounts WHERE user_id = ${user_id};`;
     connection.query(sql, function (err, results) {
-        if (err) throw err
-        callback(results)
+        if (err) throw err;
+
+        callback(false, results)
     })
 
 }
 
-function insert_into_user_post(user_id, image_path, callback) {
-    let sql = `INSERT into User_Posts (user_id, image_path) VALUES ('${user_id}', '${image_path}');`;
-    connection.query(sql, function (err, results) {
+function insert_into_user_post(user_id, image_path, caption, callback) {
+    let sql = `INSERT into User_Posts (user_id, image_path, caption) VALUES('${user_id}', '${image_path}', '${caption}');`;
+    connection.query(sql, function (err) {
         if (err) throw err;
 
         callback(false); // insert worked
@@ -135,13 +136,22 @@ function check_password(username, password, callback){
           RowDataPacket { image_path: 'user_images/operator.png' } ]
 */
 function get_user_pictures(user_id, callback){
-    let sql = `SELECT image_path FROM User_Posts WHERE user_id = ${user_id} ORDER BY time_stamp DESC;`;
+    let sql = `SELECT image_path, caption FROM User_Posts WHERE user_id = ${user_id} ORDER BY time_stamp DESC;`;
     connection.query(sql, function (err, results) {
         if (err) throw err;
         callback(null, results)
     })
 }
+function get_all_images(callback){
+    let sql = `SELECT user_id, image_path, caption From User_Posts ORDER BY time_stamp desc;`
+    connection.query(sql, function (err, results) {
+        if (err) throw err;
 
+        callback(false, results)
+    })
+}
+
+module.exports.get_all_images = get_all_images;
 module.exports.get_username_by_id = get_username_by_id;
 module.exports.get_user_pictures = get_user_pictures;
 module.exports.insert_into_user_post = insert_into_user_post;
