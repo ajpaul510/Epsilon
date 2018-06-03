@@ -90,11 +90,6 @@ router.get('/', function(req, res) {
 
     });
 
-// Handle sign-up get request
-router.get('/signup', function(req, res){
-	res.render('signup');
-});
-
 router.get('/shop', function(req, res){
     res.render('shop', {is_logged_in:req.isAuthenticated()})
 });
@@ -148,6 +143,10 @@ router.post('/changepassword', function(req, res){
       });
     }
   });
+});
+
+router.get('/signup', function(req, res){
+	res.render('signup');
 });
 
 // Handle sign-up submission

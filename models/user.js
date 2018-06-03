@@ -8,12 +8,11 @@ let mysql = require('mysql');
 
 const saltRounds = 10;
 
-
 // init DB
 const connection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'Ajaypal1',
+		password: 'Wendtfam96',
 		database: 'Epsilon',
 		insecureAuth: true,
 		multipleStatements: true
@@ -43,6 +42,32 @@ function insert(account, info){
         });
 }
 
+function upload_avatar(imgfile, user_id, callback){
+  var sql = 'UPDATE User_Info SET image_path = ? WHERE user_id = ?;';
+  connection.query(sql, [imgfile, user_id], function(err, results){
+      if (err) throw err;
+      callback(false, imgfile);
+    });
+}
+
+function deleteAccount(user_id, callback){
+	var sql = 'DELETE FROM User_Accounts WHERE user_id = ?;';
+	connection.query(sql, user_id, function(err, results){
+		if (err) throw err;
+		console.log(results);
+		callback(false, results);
+	});
+}
+
+function change_password(username, newPassword, callback){
+	var sql = `UPDATE User_Accounts SET password = ? WHERE username = ?;`;
+	connection.query(sql, [newPassword, username], function(err, results){
+		if (err) callback(true, null);
+		console.log(newPassword);
+		callback(false, newPassword);
+	});
+}
+
 //retrieve password for user
 function get_password(username, email, callback){
 	let sql = 'SELECT user_id FROM User_Info WHERE email = ?;';
@@ -64,15 +89,6 @@ function get_password(username, email, callback){
 				}
 			});
 		}
-	});
-}
-
-function change_password(username, newPassword, callback){
-	var sql = `UPDATE User_Accounts SET password = ? WHERE username = ?;`;
-	connection.query(sql, [newPassword, username], function(err, results){
-		if (err) callback(true, null);
-		console.log(newPassword);
-		callback(false, newPassword);
 	});
 }
 
@@ -159,22 +175,6 @@ function get_all_images(callback){
     })
 }
 
-function upload_avatar(imgfile, user_id, callback){
-  var sql = 'UPDATE User_Info SET image_path = ? WHERE user_id = ?;';
-  connection.query(sql, [imgfile, user_id], function(err, results){
-      if (err) throw err;
-      callback(false, imgfile);
-    });
-}
-
-function deleteAccount(user_id, callback){
-	var sql = 'DELETE FROM User_Accounts WHERE user_id = ?;';
-	connection.query(sql, user_id, function(err, results){
-		if (err) throw err;
-		console.log(results);
-		callback(false, results);
-	});
-}
 
 module.exports.deleteAccount = deleteAccount;
 module.exports.change_password = change_password;

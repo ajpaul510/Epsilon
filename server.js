@@ -26,10 +26,10 @@ let fileUpload = require('express-fileupload');
 let app = express();
 
 
-let options ={
+let options = {
     host: 'localhost',
     user: 'root',
-    password: 'Ajaypal1',
+    password: 'Wendtfam96',
     database: 'Epsilon',
     insecureAuth: true
 };
