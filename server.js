@@ -26,6 +26,7 @@ let fileUpload = require('express-fileupload');
 let app = express();
 
 let options ={
+
     host: 'localhost',
     user: 'root',
     password: 'Ajaypal1',

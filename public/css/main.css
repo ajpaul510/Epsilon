@@ -1,126 +1,126 @@
-body{
-  position: relative;
-}
-
-.content {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: 20% 1fr 20%;
-  grid-gap: 5px;
-  padding: 5px;
-  justify-content: space-between;
-}
-
-.signup{
-  margin-top: 90px;
-  text-align: center;
-  /*border: red solid 2px;*/
-}
-
-.container {
-  margin-top: 90px;
-}
-
-.middle-column {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  /* border: red solid 2px; */
-  padding-left: 15px;
-  padding-right: 15px;
-  position: relative;
-}
-.user-profile{
-  color: rgb(157, 154, 154);
-  font-size: 15px;
-}
-
-#upvote-btn, #downvote-btn{
-  font-size: 17px;
-  padding: 3px;
-  margin-left: 0px;
-  color: black;
-  cursor: pointer;
-}
-
-.qty {
-  border: none;
-  margin-right: -154px;
-  align-items: center;
-}
-
-.left-column {
-  /* border: red solid 2px; */
-  padding-left: 10px;
-  padding-top: 7px;
-}
-
-.left-column h6{
-  color: rgb(154, 154, 154); /* "Popular" */
-  font-size: 14px;
-}
-
-.left-column button{
-  color: black;
-  padding: 0;
-  margin: 2px;
-}
-
-.left-column button:hover{
-  background-color: rgba(213, 213, 213, 0.73);
-}
-
-.left-column hot-topic{
-  max-width: 25px;
-  max-height: 25px;
-}
-
-.left-column img{
-  padding-right: 6px;
-}
-
-.right-column {
-  /* border: red solid 2px; */
-  padding-left: 10px;
-  padding-top: 7px;
-}
-#ad{
-  padding-top: 5px;
-}
-#top{
-  position: fixed;
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 999;
-  background-color: black;
-  color: white;
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding-top: -4px
-  padding-bottom: -4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 0px; /* Rounded corners */
-  border: thin;
-  font-size: 20px;
-  text-align: center;
-}
-#top:hover {
-    background-color: #555;
-}
-
-
-.card{
-  float: none;
-  margin: 0 auto;
-  margin-top: 15px;
-}
-
-.card{
-  position: relative;
-}
-
-.bottom-right{
-   position: absolute;
-     bottom: 8px;
-     right: 16px;
-     font-size: 18px;
+ body{
+   position: relative;
  }
+
+ .content {
+   margin-top: 60px;
+   display: grid;
+   grid-template-columns: 20% 1fr 20%;
+   grid-gap: 5px;
+   padding: 5px;
+   justify-content: space-between;
+ }
+
+ .signup{
+   margin-top: 90px;
+   text-alihttps://github.com/ajpaul510/Epsilon/commits/masterhttps://github.com/ajpaul510/Epsilon/commits/mastergn: center;
+   /*border: red solid 2px;*/
+ }
+
+ .container {
+   margin-top: 90px;
+ }
+
+ .middle-column {
+   overflow-x: hidden;
+   overflow-y: scroll;
+   /* border: red solid 2px; */
+   padding-left: 15px;
+   padding-right: 15px;
+   position: relative;
+ }
+ .user-profile{
+   color: rgb(157, 154, 154);
+   font-size: 15px;
+ }
+
+ #upvote-btn, #downvote-btn{
+   font-size: 17px;
+   padding: 3px;
+   margin-left: 0px;
+   color: black;
+   cursor: pointer;
+ }
+
+ .qty {
+   border: none;
+   margin-right: -154px;
+   align-items: center;
+ }
+
+ .left-column {
+   /* border: red solid 2px; */
+   padding-left: 10px;
+   padding-top: 7px;
+ }
+
+ .left-column h6{
+   color: rgb(154, 154, 154); /* "Popular" */
+   font-size: 20px;
+ }
+
+ .left-column button{
+   color: black;
+   padding: 0;
+   margin: 2px;
+ }
+
+ .left-column button:hover{
+   background-color: rgba(213, 213, 213, 0.73);
+ }
+
+ .left-column hot-topic{
+   max-width: 25px;
+   max-height: 25px;
+ }
+
+ .left-column img{
+   padding-right: 6px;
+ }
+
+ .right-column {
+   /* border: red solid 2px; */
+   padding-left: 10px;
+   padding-top: 7px;
+ }
+ #ad{
+   padding-top: 5px;
+ }
+ #top{
+   position: fixed;
+   bottom: 20px; /* Place the button at the bottom of the page */
+   right: 30px; /* Place the button 30px from the right */
+   z-index: 999;
+   background-color: black;
+   color: white;
+   cursor: pointer; /* Add a mouse pointer on hover */
+   padding-top: -4px
+   padding-bottom: -4px;
+   padding-left: 4px;
+   padding-right: 4px;
+   border-radius: 0px; /* Rounded corners */
+   border: thin;
+   font-size: 20px;
+   text-align: center;
+ }
+ #top:hover {
+     background-color: #555;
+ }
+
+
+ .card{
+   float: none;
+   margin: 0 auto;
+   margin-top: 15px;
+ }
+
+ .card{
+   position: relative;
+ }
+
+ .bottom-right{
+    position: absolute;
+      bottom: 8px;
+      right: 16px;
+      font-size: 18px;
+  }
