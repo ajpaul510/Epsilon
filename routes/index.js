@@ -78,13 +78,11 @@ router.get('/', function(req, res) {
     let is_logged_in = req.isAuthenticated();
 
     get_card_data_index(function (results) {
-        let card_data = results;
-
 
         res.render('index', {
             is_logged_in :is_logged_in,  //base.handlebars needs this
             signedin: is_logged_in, // profile.handlebars needs this
-            cards : card_data // for dynamic card generation (Feed)
+            cards : results // for dynamic card generation (Feed)
         });
     });
 
